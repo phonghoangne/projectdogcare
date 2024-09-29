@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: SpringBootPractice
+  datasource:
+    url: jdbc:mysql://localhost:3306/data_api
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update # none , create , create-drop , update   Hibernate sẽ tự động cập nhật cơ sở dữ liệu dựa trên các thay đổi trong các entity.
+    show-sql: true # hien thi cau sql hibernate thuic hien vs Database
+server:
+  port: 8080
