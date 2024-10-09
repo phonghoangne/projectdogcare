@@ -1,2 +1,7 @@
-package com.app.repository;public interface InvoiceRepository {
+package com.app.repository;
+
+import com.app.model.Invoice;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface InvoiceRepository  extends JpaRepository<Invoice,Integer> {
 }

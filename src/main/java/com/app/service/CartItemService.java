@@ -1,2 +1,6 @@
-package com.app.service;public interface CartItemService {
+package com.app.service;
+
+import com.app.model.CartItem;
+
+public interface CartItemService extends BaseModel<CartItem,Integer> {
 }
