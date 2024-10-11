@@ -27,6 +27,8 @@
 </head>
 
 <body>
+<div th:replace="fragments/header :: header"></div>
+
 
     <!--Preloader-->
     <div id="preloader">
@@ -735,6 +737,7 @@
     <script>
         SVGInject(document.querySelectorAll("img.injectable"));
     </script>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

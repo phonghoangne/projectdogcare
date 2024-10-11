@@ -1,2 +1,4 @@
-package com.app.controller;public class AccountController {
+package com.app.controller;
+
+public class AccountController {
 }

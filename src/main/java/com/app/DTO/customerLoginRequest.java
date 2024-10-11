@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 
-public class customerLoginRequest {
+public class    customerLoginRequest {
     private String username;
     private String password;
     private boolean remember = false;
