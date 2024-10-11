@@ -17,9 +17,8 @@ public class Order {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
-        @ManyToOne
-        @JoinColumn(name = "customer_id", referencedColumnName = "id")
-        private Customer customer;
+        @Column(name = "customer_id")
+        private Integer customer;
         private Date orderDate;
         private String status;
         private double totalAmount;

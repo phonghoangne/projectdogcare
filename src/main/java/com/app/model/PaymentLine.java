@@ -18,9 +18,8 @@ public class PaymentLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "payment_id",referencedColumnName = "id")
-    private Payment payment;
+    @Column(name="payment_id")
+    private Integer payment;
     private double amount;
     private Date paymentDate;
 
