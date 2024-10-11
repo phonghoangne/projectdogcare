@@ -17,8 +17,6 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String animalType;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ProductCategory category;
+    @Column(name = "category_id")
+    private Integer category;
 }

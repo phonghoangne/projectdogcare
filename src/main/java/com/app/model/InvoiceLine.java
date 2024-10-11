@@ -19,12 +19,11 @@ public class InvoiceLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "invoice_id" , referencedColumnName = "id")
-    private Invoice invoice;
-    @ManyToOne
-    @JoinColumn(name = "product_id" , referencedColumnName = "id")
-    private Product product;
+    @Column(name = "invoice_id"  )
+    private Integer invoice;
+
+    @Column(name = "product_id"  )
+    private Integer product;
     private Integer quantity;
     private BigDecimal price;
 }

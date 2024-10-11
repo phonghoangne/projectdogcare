@@ -1,5 +1,12 @@
 package com.app.utils;
 
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,10 +33,16 @@ public class CookiesService {
         }
         return null;
     }
+
     public void remove(String name ,HttpServletResponse response){
+
+
         Cookie cookie = new Cookie(name,null);
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
     }
+
+
+
 }

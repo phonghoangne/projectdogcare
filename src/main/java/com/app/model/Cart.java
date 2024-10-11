@@ -16,9 +16,8 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Customer customer;
+    @Column(name = "customer_id" )
+    private Integer customer;
     @Temporal(TemporalType.TIMESTAMP) // anh xa datetime trong sql thanh date trong java
     private Date createdDate;
     private BigDecimal total;

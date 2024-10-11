@@ -19,10 +19,15 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "invoice_id",referencedColumnName = "id")
-    private Invoice invoice;
+
+
+    @Column(name = "invoice_id", nullable = false, updatable = false, insertable = false,columnDefinition = "int default 0")
+    private Integer invoiceId;
     private Date paymentDate;
     private BigDecimal amount;
     private String paymentMethod;
+
+
+
+
 }

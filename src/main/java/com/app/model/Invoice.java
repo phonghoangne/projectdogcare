@@ -21,9 +21,8 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "order_id" ,referencedColumnName = "id")
-    private Order order;
+    @Column(name = "order_id" )
+    private Integer order;
     private Date invoiceDate;
     private BigDecimal totalAmount;
 

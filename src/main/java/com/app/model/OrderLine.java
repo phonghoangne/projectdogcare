@@ -19,12 +19,9 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
-    private Order order;
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    private Integer order;
+    @Column(name = "product_id" )
+    private Integer product;
     private Integer  quantity;
     private BigDecimal price;
 }

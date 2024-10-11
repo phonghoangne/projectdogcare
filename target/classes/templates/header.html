@@ -1,5 +1,9 @@
 <!doctype html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+>>>>>>> e05e954055c93d2092dc0808edc395026b35d1f4
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,14 +11,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<<<<<<< HEAD
 <body><!-- templates/fragments/header.html -->
 <header>
+=======
+<body>
+<!-- templates/fragments/header.html -->
+<header th:fragment="headerF">
+>>>>>>> e05e954055c93d2092dc0808edc395026b35d1f4
     <div id="header-fixed-height"></div>
     <div class="tg-header__top">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-8">
                     <ul class="tg-header__top-info left-side list-wrap">
+<<<<<<< HEAD
                         <li><i class="flaticon-placeholder"></i>59 Jakc Street Brooklyn, New York</li>
                         <li><i class="flaticon-mail"></i><a href="mailto:Petspostinfo@gmail.com">Petspostinfo@gmail.com</a></li>
                     </ul>
@@ -30,6 +41,25 @@
                                 <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
                             </ul>
+=======
+                        <li><i class="flaticon-placeholder"></i><span th:text="#{address}"> </span></li>
+                        <li><i class="flaticon-mail"></i><a
+                                href="mailto:Petspostinfo@gmail.com">Petspostinfo@gmail.com</a></li>
+
+                    </ul>
+                    <p th:text="${message}"></p>
+                </div>
+                <div class="col-xl-6 col-lg-4">
+                    <ul class="tg-header__top-right list-wrap">
+                        <li><i class="flaticon-phone"></i>Need help? Call Us: <a href="tel:0123456789">+ 1800 2900</a>
+                        </li>
+                        <li>
+                            <select id="languageSelect" onchange="changeLanguage()">
+                                <option value="vi">Tiếng Việt</option>
+                                <option value="en">English</option>
+                                <option value="ja">Japanese</option>
+                            </select>
+>>>>>>> e05e954055c93d2092dc0808edc395026b35d1f4
                         </li>
                     </ul>
                 </div>
@@ -97,7 +127,10 @@
         </div>
     </div>
 </header>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e05e954055c93d2092dc0808edc395026b35d1f4
 </body>
 </html>
