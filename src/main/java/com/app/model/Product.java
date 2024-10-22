@@ -18,5 +18,6 @@ public class Product {
     private BigDecimal price;
     private String animalType;
     @Column(name = "category_id")
-    private Integer category;
+    private Integer categoryId;
+    private String image;
 }

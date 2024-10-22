@@ -2,12 +2,23 @@ spring:
   application:
     name: SpringBootPractice
   datasource:
-    url: jdbc:mysql://localhost:3306/petshop
+    url: jdbc:mysql://localhost:3306/animals
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   messages:
     basename=messages: encoding=UTF-8
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: chithanh03062001@gmail.com
+    password: nnuikakcfmvivgln
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+
+
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
