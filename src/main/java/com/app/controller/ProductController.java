@@ -34,9 +34,13 @@ public class ProductController {
     {
         GlobalResponsePagination result = productService.getAll(request);
         model.addAttribute("dataProduct",result);
+        model.addAttribute("totalPage",result.getTotalPage());
+        model.addAttribute("currentPage",result.getCurrentPage());
+
         commonController.getAllProductCategory(model);
         return "product";
     }
 
 
 }
+

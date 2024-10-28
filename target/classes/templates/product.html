@@ -7,7 +7,6 @@
     <title>Petpal - Pet Care and Pet Shop HTML Template</title>
     <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -34,6 +33,7 @@
 </button>
 <!-- Scroll-top-end-->
 
+
 <th:block th:replace="~{header.html :: headerF}"></th:block>
 
 <!-- main-area -->
@@ -47,10 +47,10 @@
                     <div class="breadcrumb__content">
                         <h3 class="title">All Products</h3>
                         <nav class="breadcrumb">
-                            <span property="itemListElement" typeof="ListItem">
-                                <a href="index.html">Home</a>
-                            </span>
-                            <span class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                                <span property="itemListElement" typeof="ListItem">
+                                    <a href="index.html">Home</a>
+                                </span>
+                            <span class="breadcrumb-separator"><i class="fa-solid fa-caret-left"></i></span>
                             <span property="itemListElement" typeof="ListItem">All Products</span>
                         </nav>
                     </div>
@@ -63,8 +63,8 @@
             </div>
         </div>
         <div class="breadcrumb__shape-wrap">
-            <img th:src="@{/img/images/shape01.png}" alt="img" data-aos="fade-down-right" data-aos-delay="400">
-            <img th:src="@{/img/images/shape02.png}" alt="img" data-aos="fade-up-left" data-aos-delay="400">
+            <img th:src="@{/img/images/breadcrumb_shape01.png}" alt="img" data-aos="fade-down-right" data-aos-delay="400">
+            <img th:src="@{/img/images/breadcrumb_shape02.png}" alt="img" data-aos="fade-up-left" data-aos-delay="400">
         </div>
     </section>
     <!-- breadcrumb-area-end -->
@@ -72,15 +72,47 @@
     <!-- product-area -->
     <section class="product__area-four">
         <div class="container">
-            <div class="row gutter-20 row-cols-1 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center" id="product-list">
-                <!-- Sản phẩm sẽ được thêm vào đây qua JavaScript -->
+            <div class="row gutter-20 row-cols-1 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center">
+                <div class="col" th:each="item:${dataProduct.data}">
+                    <div class="product__item">
+                        <div class="product__thumb">
+                            <a href="product-details.html"><img th:src="@{http://localhost:8080/uploads/__${item.image}__}" alt="img"></a>
+                            <div class="product__action">
+                                <a href="product-details.html"><i class="flaticon-love"></i></a>
+                                <a href="product-details.html"><i class="flaticon-loupe"></i></a>
+                                <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                            </div>
+                            <div class="sale-wrap">
+                                <span>New</span>
+                            </div>
+                            <div class="product__add-cart">
+                                <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                        <div class="product__content">
+                            <div class="product__reviews">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>(2 Reviews)</span>
+                            </div>
+                            <h4 class="title"><a href="product-details.html"><span th:text="${item.productName}"></span></a></h4>
+                            <h3 class="price">$12.00 <del>$25.00</del></h3>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <nav class="pagination__wrap mt-50">
-                <ul class="list-wrap" id="pagination">
-                    <li class="link-arrow"><a href="#" id="prev-page" onclick="changePage(currentPage - 1)"><i class="fa-solid fa-angles-left"></i></a></li>
-                    <li class="active" id="page-1"><a href="#" onclick="changePage(1)">1</a></li>
-                    <!-- Các trang khác sẽ được thêm vào qua JavaScript -->
-                    <li class="link-arrow"><a href="#" id="next-page" onclick="changePage(currentPage + 1)"><i class="fa-solid fa-angles-right"></i></a></li>
+                <ul class="list-wrap">
+                    <li class="link-arrow"><a th:href="@{'?currentPage='+${currentPage}}"><img src="assets/img/icon/pagination_icon01.svg" alt="" class="injectable"></a></li>
+                    <li th:each="i:${#numbers.sequence(1,totalPage)}"  th:classappend="${currentPage == i ? 'active':''}"><a th:href="@{'?currentPage='+${i}}" th:text="${i}"></a></li>
+
+                    <li class="link-arrow"><a th:href="@{'?currentPage='+${currentPage+1}}"><img src="assets/img/icon/pagination_icon02.svg" alt="" class="injectable"></a></li>
                 </ul>
             </nav>
         </div>
@@ -90,9 +122,11 @@
 </main>
 <!-- main-area-end -->
 
+
 <!-- footer-area -->
 <div th:insert="footer :: footer"></div>
 <!-- footer-area-end -->
+
 
 <!-- JS here -->
 <th:block th:replace="fragmentJs :: fraScripts"></th:block>
@@ -100,85 +134,9 @@
     SVGInject(document.querySelectorAll("img.injectable"));
 </script>
 
-<script>
-    let currentPage = 1;
-    const pageSize = 10; // Kích thước trang
-
-    function changePage(page) {
-        if (page < 1) return; // Ngăn không cho trang âm
-        currentPage = page;
-        fetchProducts(currentPage);
-    }
-
-    function fetchProducts(page) {
-        fetch(`/api/products?page=${page}&size=${pageSize}`)
-            .then(response => response.json())
-            .then(data => {
-                displayProducts(data.data);
-                setupPagination(data.totalPage, data.currentPage);
-            })
-            .catch(error => console.error('Error fetching products:', error));
-    }
-
-    function displayProducts(products) {
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = '';
-
-        products.forEach(item => {
-            const productItem = document.createElement('div');
-            productItem.className = 'col';
-            productItem.innerHTML = `
-                <div class="product__item">
-                    <div class="product__thumb">
-                        <a href="product-details.html"><img src="http://localhost:8080/uploads/${item.image}" alt="img"></a>
-                        <div class="product__action">
-                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
-                        </div>
-                        <div class="sale-wrap">
-                            <span>New</span>
-                        </div>
-                        <div class="product__add-cart">
-                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
-                        </div>
-                    </div>
-                    <div class="product__content">
-                        <div class="product__reviews">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>(2 Reviews)</span>
-                        </div>
-                        <h4 class="title"><a href="product-details.html"><span>${item.productName}</span></a></h4>
-                        <h3 class="price">$${item.price} <del>$${item.oldPrice}</del></h3>
-                    </div>
-                </div>
-            `;
-            productList.appendChild(productItem);
-        });
-    }
-
-    function setupPagination(totalPages, currentPage) {
-        const pagination = document.getElementById('pagination');
-        pagination.innerHTML = '';
-
-        for (let i = 1; i <= totalPages; i++) {
-            const pageItem = document.createElement('li');
-            pageItem.innerHTML = `<a href="#" onclick="changePage(${i})">${i}</a>`;
-            if (i === currentPage) {
-                pageItem.className = 'active';
-            }
-            pagination.appendChild(pageItem);
-        }
-    }
-
-    // Khởi động khi tải trang
-    fetchProducts(currentPage);
+<script th:inline="javascript">
+    var data = [[${dataProduct}]];
+    console.log(data)
 </script>
 </body>
 
