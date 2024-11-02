@@ -21,7 +21,7 @@
 <div id="preloader">
     <div id="loader" class="loader">
         <div class="loader-container">
-            <div class="loader-icon"><img src="assets/img/logo/preloader.svg" alt="Preloader"></div>
+            <div class="loader-icon"><img th:src="@{/img/logo/preloader.svg}" alt="Preloader"></div>
         </div>
     </div>
 </div>
@@ -118,16 +118,18 @@
             </div>
             <nav class="pagination__wrap mt-50">
                 <ul class="list-wrap">
-                    <li class="link-arrow" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
-                        <a th:href="@{'?currentPage='+${currentPage+(-1)}}" th:disabled="${currentPage == 1}">
+                    <li class="link-arrow" id="p_first-arrow" >
+                        <a th:href="@{/app/products(page=${currentPage - 1})}" th:disabled="${currentPage == 1}">
                             <img th:src="@{/img/images/left-2-svgrepo-com.svg}" alt="" class="injectable">
                         </a>
                     </li>
 
-                    <li th:each="i:${#numbers.sequence(1,totalPage)}"  th:classappend="${currentPage == i ? 'active':''}"><a th:href="@{'?currentPage='+${i}}" th:text="${i}"></a></li>
+                    <li th:each="i : ${#numbers.sequence(0,(totalPage - 1) )}"  th:classappend="${currentPage == i ? 'active':''}">
+                        <a th:href="@{/app/products(page=${i})}" th:text="${(i+1)}"></a>
+                    </li>
 
-                    <li class="link-arrow" th:classappend="${currentPage == totalPage ? 'disabled' : ''}">
-                        <a th:href="@{'?currentPage='+${currentPage+1}}" th:disabled="${currentPage == totalPage}">
+                    <li class="link-arrow" id="p_last-arrow"  >
+                        <a th:href="@{/app/products(page=${currentPage+1})}" th:disabled="${currentPage == totalPage}">
                             <img th:src="@{/img/images/right-2-svgrepo-com.svg}" alt="" class="injectable">
                         </a>
                     </li>
@@ -157,6 +159,32 @@
 <script th:inline="javascript">
     var data = [[${dataProduct}]];
     console.log(data)
+
+    var checkPagination = [[${currentPage}]]
+    var totalPage = [[${totalPage}]]
+    console.log(checkPagination)
+    if(checkPagination === 0)
+    {
+        document.getElementById("p_first-arrow").style.display = 'none';
+    }else if(checkPagination  === (totalPage -1 ) )
+    {
+        document.getElementById("p_last-arrow").style.display = 'none';
+    }else{
+        document.getElementById("p_first-arrow").style.display = 'block';
+        document.getElementById("p_last-arrow").style.display = 'block';
+    }
+</script>
+
+<script>
+    function redirectToLink() {
+        const select = document.getElementById('course-cat');
+        const selectedOption = select.options[select.selectedIndex];
+        const link = selectedOption.getAttribute('data-link');
+
+        if (link) {
+            window.location.href = link;
+        }
+    }
 </script>
 </body>
 

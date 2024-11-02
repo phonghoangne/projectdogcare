@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
+<style>
+
+</style>
 <body><!-- templates/fragments/header.html -->
 
 <!-- templates/fragments/header.html -->
@@ -21,7 +25,7 @@
                     <div class="tgmenu__wrap">
                         <nav class="tgmenu__nav">
                             <div class="logo">
-                                <a href="index.html"><img th:src="@{/img/logo/logo.png}" alt="Logo"></a>
+                                <a th:href="@{/app/home}"><img th:src="@{/img/logo/logo.png}" alt="Logo"></a>
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__navbar-wrap-two tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation">
@@ -41,26 +45,28 @@
                             <div class="tgmenu__search">
                                 <form action="#" class="tgmenu__search-form">
                                     <input type="text" placeholder="Search Here . . .">
-                                    <!--                                    <div class="select-grp">-->
-                                    <!--                                        <select class="form-select" id="course-cat" aria-label="Default select example" style="width: 130px">-->
-                                    <!--                                            <option selected disabled>All Categories</option>-->
-                                    <!--                                            <option th:each="item: ${listProductCategory}" th:value="${item.id}"  >-->
-                                    <!--                                                <a th:href="@{/app/products(categoryId = ${item.id})}" ><p th:text="${item.getCategoryName()}"></p></a>-->
-                                    <!--                                            </option>-->
-                                    <!--                                        </select>-->
-                                    <!--                                    </div>-->
+<!--                                    <div class="select-grp">-->
+<!--                                        <div class="dropdown">-->
+<!--                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                                All Categories-->
+<!--                                            </button>-->
+<!--                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--                                                <li th:each="item : ${listProductCategory}">-->
+<!--                                                    <a class="dropdown-item" th:href="@{/app/products(categoryId=${item.id})}" th:text="${item.categoryName}"></a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="select-grp">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                All Categories
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li th:each="item : ${listProductCategory}">
-                                                    <a class="dropdown-item" th:href="@{/app/products(categoryId=${item.id})}" th:text="${item.categoryName}"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <select class="form-select" id="course-cat" aria-label="Default select example" style="width: 130px" onchange="redirectToLink()">
+                                            <option selected disabled>All Categories</option>
+                                            <th:block th:each="item : ${listProductCategory}">
+                                                <option value="1"  th:attr="data-link=@{/app/products(categoryId=${item.id})}" th:text="${item.categoryName}">Dogs</option>
+                                            </th:block>
+                                        </select>
                                     </div>
+
+
 
                                     <button type="submit">  <i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
@@ -68,9 +74,15 @@
                             <div class="tgmenu__action tgmenu__action-three d-none d-md-block">
                                 <ul class="list-wrap">
                                     <li class="header-login">
-                                        <a href="contact.html">
+                                        <a href="javascript:void(0);" onclick="toggleDropdown()">
                                             <i class="fa-regular fa-user"></i>
                                         </a>
+                                        <ul id="userDropdown" class="dropdown-menu" style="display: none">
+                                            <li><a href="admin.html">Admin</a></li>
+                                            <li><a href="profile.html">Thông tin</a></li>
+                                            <li><a href="login.html">Đăng nhập</a></li>
+                                            <li><a href="logout.html">Đăng xuất</a></li>
+                                        </ul>
                                     </li>
                                     <li class="header-wishlist">
                                         <a href="javascript:void(0)">
@@ -97,7 +109,7 @@
                         <nav class="tgmobile__menu-box">
                             <div class="close-btn"><i class="fas fa-times"></i></div>
                             <div class="nav-logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                <a th:href="@{/app/home}"><img src="assets/img/logo/logo.png" alt="Logo"></a>
                             </div>
                             <div class="tgmobile__search">
                                 <form action="#">
@@ -127,14 +139,11 @@
         </div>
     </div>
 </header>
-<script>
-    document.getElementById('course-cat').addEventListener('change', function() {
-        var selectedUrl = this.value;  // Lấy giá trị (URL) của option được chọn
-        if (selectedUrl) {
-            window.location.href = selectedUrl;  // Redirect đến URL tương ứng
-        }
-    });
 
-</script>
+
+
 </body>
+
+
+
 </html>

@@ -1522,6 +1522,35 @@
 <!-- JS here -->
 <th:block th:replace="fragmentJs :: fraScripts"></th:block>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // document.getElementById('course-cat').addEventListener('change', function() {
+    //     var selectedUrl = this.value;  // Lấy giá trị (URL) của option được chọn
+    //     if (selectedUrl) {
+    //         window.location.href = selectedUrl;  // Redirect đến URL tương ứng
+    //     }
+    // });
+    function redirectToLink() {
+        const select = document.getElementById('course-cat');
+        const selectedOption = select.options[select.selectedIndex];
+        const link = selectedOption.getAttribute('data-link');
+
+        if (link) {
+            window.location.href = link;
+        }
+    }
+</script>
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("userDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    window.onclick = function(event) {
+        if (!event.target.closest('.header-login')) {
+            document.getElementById("userDropdown").style.display = "none";
+        }
+    }
+</script>
 </body>
 
 </html>

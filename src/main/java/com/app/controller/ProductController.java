@@ -46,6 +46,8 @@ public class ProductController {
         return "product";
     }
 
+    // @requestparam
+    // @pathvariable
 
 }
 
