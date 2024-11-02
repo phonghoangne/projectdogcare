@@ -55,15 +55,32 @@ public class ProductServiceImpl implements ProductService {
         // page
         //1 page record - tong so page - tong so item
         // java lambda
+        //page = 2 // pageSize = 5
+        //pageable cua thang jpa tu tinh la 5 phan tu thi no chia dc may trang  vd chia dc 10 trang ma minh truyen vao la page = 2
+        // => 5 phan cua page 2
+        // specification : tao ra dieu kien where cho cau truy vann
+        // pageable tao ra dooi tuong phan trang
+        // truyen vao ham findAll cua  jpa => se lay ra cac phan tu thoa man 2 dieu kien tren
         Pageable page = PageRequest.of(request.getPage(), request.getPageSize()); // ho tro phan trang
         Specification<Product>spec = ProductSpecification.getSpect(request);
+
         Page<Product> result = productRepository.findAll(spec,page);
         GlobalResponsePagination response = new GlobalResponsePagination();
+
         List<Product> product = new ArrayList<>();
 
         result.getContent().forEach(item->{
             product.add(item);
         });// java lambda
+
+        /*
+        doi tuong page
+        => total page
+        => total element
+        => current page
+
+         */
+        //
         response.setData(product);
         response.setTotalPage(result.getTotalPages());
         response.setTotalItem(result.getTotalElements());
