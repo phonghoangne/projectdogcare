@@ -70,4 +70,11 @@ public class ProductServiceImpl implements ProductService {
         response.setCurrentPage(result.getNumber());
         return response;
     }
+
+    @Override
+    public List<Product> searchProductByName(String name) {
+        Specification<Product> spec = ProductSpecification.likeName(name);
+        return productRepository.findAll(spec);
+    }
+
 }

@@ -7,7 +7,7 @@
     <title>Petpal - Pet Care and Pet Shop HTML Template</title>
     <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
@@ -50,7 +50,7 @@
                                 <span property="itemListElement" typeof="ListItem">
                                     <a href="index.html">Home</a>
                                 </span>
-                            <span class="breadcrumb-separator"><i class="fa-solid fa-caret-left"></i></span>
+                            <span class="breadcrumb-separator"><i class="fa-solid fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">All Products</span>
                         </nav>
                     </div>
@@ -72,6 +72,15 @@
     <!-- product-area -->
     <section class="product__area-four">
         <div class="container">
+            <div class="search-bar mb-4">
+                <form action="/products/search" method="GET" id="searchForm">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="name" placeholder="Search products...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+
             <div class="row gutter-20 row-cols-1 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center">
                 <div class="col" th:each="item:${dataProduct.data}">
                     <div class="product__item">
@@ -109,15 +118,26 @@
             </div>
             <nav class="pagination__wrap mt-50">
                 <ul class="list-wrap">
-                    <li class="link-arrow"><a th:href="@{'?currentPage='+${currentPage}}"><img src="assets/img/icon/pagination_icon01.svg" alt="" class="injectable"></a></li>
+                    <li class="link-arrow" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                        <a th:href="@{'?currentPage='+${currentPage+(-1)}}" th:disabled="${currentPage == 1}">
+                            <img th:src="@{/img/images/left-2-svgrepo-com.svg}" alt="" class="injectable">
+                        </a>
+                    </li>
+
                     <li th:each="i:${#numbers.sequence(1,totalPage)}"  th:classappend="${currentPage == i ? 'active':''}"><a th:href="@{'?currentPage='+${i}}" th:text="${i}"></a></li>
 
-                    <li class="link-arrow"><a th:href="@{'?currentPage='+${currentPage+1}}"><img src="assets/img/icon/pagination_icon02.svg" alt="" class="injectable"></a></li>
+                    <li class="link-arrow" th:classappend="${currentPage == totalPage ? 'disabled' : ''}">
+                        <a th:href="@{'?currentPage='+${currentPage+1}}" th:disabled="${currentPage == totalPage}">
+                            <img th:src="@{/img/images/right-2-svgrepo-com.svg}" alt="" class="injectable">
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
         </div>
     </section>
     <!-- product-area-end -->
+
 
 </main>
 <!-- main-area-end -->

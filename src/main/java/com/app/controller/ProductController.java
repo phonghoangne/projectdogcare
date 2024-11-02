@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,14 +27,22 @@ public class ProductController {
     private final CommonController commonController;
 
     @GetMapping("")
-    public String getAllProduct(@ModelAttribute ProductRequest request, Model model)
-    {
+    public String getAllProduct(@ModelAttribute ProductRequest request, Model model) {
+        if (request.getPage() == null) request.setPage(0);
+        if (request.getPageSize() == null) request.setPageSize(10);
         GlobalResponsePagination result = productService.getAll(request);
-        model.addAttribute("dataProduct",result);
-        model.addAttribute("totalPage",result.getTotalPage());
-        model.addAttribute("currentPage",result.getCurrentPage());
-
+        model.addAttribute("dataProduct", result);
+        model.addAttribute("totalPage", result.getTotalPage());
+        model.addAttribute("currentPage", result.getCurrentPage());
         commonController.getAllProductCategory(model);
+        return "product";
+    }
+
+
+    @GetMapping("/search")
+    public String searchProductByName(@RequestParam("name") String name , Model model){
+        List<Product> products = productService.searchProductByName(name);
+        model.addAttribute("dataProduct", products );
         return "product";
     }
 
