@@ -29,17 +29,17 @@
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__navbar-wrap-two tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="active menu-item-has-children"> <a href="#">Home</a>
+                                    <li class="active "> <a href="#">Home</a>
                                     </li>
                                     <li><a href="about.html">About</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Shop</a>
+                                    <li ><a href="#">Shop</a>
                                         <ul class="sub-menu">
-                                            <li><a href="product.html">Our Shop</a></li>
-                                            <li><a href="product-details.html">Shop Details</a></li>
+                                            <li><a href="product.html">Products</a></li>
+                                            <li><a href="product-details.html">Products Details</a></li>
                                         </ul>
                                     </li>
                                   
-                                    <li><a href="contact.html">contacts</a></li>
+                                    <li><a href="contact.html">Contacts</a></li>
                                 </ul>
                             </div>
                             <div class="tgmenu__search">
@@ -73,6 +73,16 @@
                             </div>
                             <div class="tgmenu__action tgmenu__action-three d-none d-md-block">
                                 <ul class="list-wrap">
+                                    <li class="header-wishlist">
+                                        <a href="javascript:void(0);" onclick="toggleLanguageDropdown()">
+                                            <i class="fa-solid fa-language"></i>
+                                        </a>
+                                        <ul id="languageDropdown" class="dropdown-menu" style="display: none">
+                                            <li><a href="#">Tiếng Việt</a></li>
+                                            <li><a href="#">Tiếng Nhật</a></li>
+                                            <li><a href="#">Tiếng Anh</a></li>
+                                        </ul>
+                                    </li>
                                     <li class="header-login">
                                         <a href="javascript:void(0);" onclick="toggleDropdown()">
                                             <i class="fa-regular fa-user"></i>
@@ -84,13 +94,7 @@
                                             <li><a href="logout.html">Đăng xuất</a></li>
                                         </ul>
                                     </li>
-                                    <li class="header-wishlist">
-                                        <a href="javascript:void(0)">
-                                            <i class="fa-regular fa-heart"></i>
-                                        </a>
-                                    </li>
                                     <li class="header-cart header-cart-two">
-                                        <strong class="price">$0.00</strong>
                                         <a href="javascript:void(0)">
                                             <i class="fa-solid fa-bag-shopping"></i>
                                             <span>0</span>
@@ -101,10 +105,9 @@
                             <div class="mobile-nav-toggler">
                                 <i class="flaticon-layout"></i>
                             </div>
-                        </nav>
-                    </div>
 
-                    <!-- Mobile Menu  -->
+
+                            <!-- Mobile Menu  -->
                     <div class="tgmobile__menu">
                         <nav class="tgmobile__menu-box">
                             <div class="close-btn"><i class="fas fa-times"></i></div>
