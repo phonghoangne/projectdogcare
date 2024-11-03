@@ -34,6 +34,7 @@ public class ProductController {
         model.addAttribute("dataProduct", result);
         model.addAttribute("totalPage", result.getTotalPage());
         model.addAttribute("currentPage", result.getCurrentPage());
+        model.addAttribute("hello","Xin chào");
         commonController.getAllProductCategory(model);
         return "product";
     }

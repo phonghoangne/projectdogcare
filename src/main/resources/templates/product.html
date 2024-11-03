@@ -82,7 +82,7 @@
             </div>
 
             <div class="row gutter-20 row-cols-1 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center">
-                <div class="col" th:each="item:${dataProduct.data}">
+                <div class="col" th:each="item:${dataProduct.data   }">
                     <div class="product__item">
                         <div class="product__thumb">
                             <a href="product-details.html"><img th:src="@{http://localhost:8080/uploads/__${item.image}__}" alt="img"></a>
