@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PetPal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <th:block th:replace="~{fragmentCss :: commonStyles}"></th:block>
     <style>
         .login-container {
             display: flex;
@@ -14,7 +14,6 @@
             background-color: #f8f9fa;
         }
 
-
         .login-box {
             width: 400px;
             padding: 30px;
@@ -22,21 +21,27 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+
         .login-box h2 {
             text-align: center;
             margin-bottom: 30px;
             color: #343a40;
         }
+
         .login-box .btn-primary {
             background-color: #343a40;
             border: none;
         }
+
         .login-box .btn-primary:hover {
             background-color: #495057;
         }
     </style>
 </head>
 <body>
+
+<!-- Nhúng header -->
+<th:block th:replace="~{header.html :: headerF}"></th:block>
 
 <!-- Login Section -->
 <div class="login-container">
@@ -52,7 +57,7 @@
             <!-- Password input -->
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input   th:field="*{password}" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Enter your password" required>
             </div>
 
             <!-- Remember me checkbox -->
@@ -79,34 +84,28 @@
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Nhúng scripts -->
+<th:block th:replace="~{fragmentJs :: fraScripts}"></th:block>
 
 <script th:inline="javascript">
     var message = [[${message}]];
     var errorMessage =  [[${errorMessage}]];
 
-    var password =[[${accountLogin.password}]]
-    if(password!=null)
-    {
-        document.getElementById("password").value=password
+    var password =[[${accountLogin.password}]];
+    if(password!=null) {
+        document.getElementById("password").value=password;
     }
 
-    if(message!= null )
-    {
+    if(message!= null) {
         Swal.fire({
             title: "Success",
             text: message,
             icon: "success",
             confirmButtonText: "Ok",
         }).then(() => {
-            window.location.href="/app/home"
+            window.location.href="/app/home";
         });
-    }
-
-    else if(errorMessage != null)
-    {
+    } else if(errorMessage != null) {
         Swal.fire({
             title: "Failed",
             text: errorMessage,
@@ -116,10 +115,10 @@
             document.getElementById("password").value ='';
         });
     }
-
-
-
-
 </script>
+
+<!-- Nhúng footer -->
+<div th:insert="footer :: footer"></div>
+
 </body>
 </html>

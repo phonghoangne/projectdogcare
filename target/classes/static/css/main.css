@@ -153,6 +153,55 @@ h6 {
   line-height: var(--tg-heading-line-height);
   text-transform: unset;
 }
+.header-login {
+  position: relative;
+}
+
+.header-login a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  transition: color 0.3s;
+}
+
+.header-login a:hover {
+  color: #007bff;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 5px 0; /* Thêm khoảng cách dọc */
+  width: 200px; /* Đặt chiều rộng cố định */
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 18px; /* Tăng khoảng đệm */
+  color: #333;
+  text-decoration: none;
+  line-height: 1.5; /* Tăng khoảng cách dòng */
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Hiển thị menu dropdown khi hover */
+.header-login:hover .dropdown-menu {
+  display: block;
+}
+
 
 h1 a,
 h2 a,
