@@ -48,6 +48,10 @@ public class ProductController {
 
     // @requestparam
     // @pathvariable
+    @GetMapping("/product-details")
+    public String productDetails(){
+        return "product-details";
+    }
 
 }
 

@@ -10,6 +10,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS here -->
     <th:block th:replace="fragmentCss :: commonStyles"></th:block>
@@ -51,21 +52,21 @@
                                 <span property="itemListElement" typeof="ListItem">
                                     <a href="index.html">Home</a>
                                 </span>
-                            <span class="breadcrumb-separator"><i class="flaticon-right-arrow-angle"></i></span>
+                            <span class="breadcrumb-separator"><i class="fa-solid fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">All Products</span>
                         </nav>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="breadcrumb__img">
-                        <img src="assets/img/images/breadcrumb_img.png" alt="img" data-aos="fade-left" data-aos-delay="800">
+                        <img th:src="@{/img/images/breadcrumb_img.png}" alt="img" data-aos="fade-left" data-aos-delay="800">
                     </div>
                 </div>
             </div>
         </div>
         <div class="breadcrumb__shape-wrap">
-            <img src="assets/img/images/breadcrumb_shape01.png" alt="img" data-aos="fade-down-right" data-aos-delay="400">
-            <img src="assets/img/images/breadcrumb_shape02.png" alt="img" data-aos="fade-up-left" data-aos-delay="400">
+            <img th:src="@{/img/images/breadcrumb_shape01.png}" alt="img" data-aos="fade-down-right" data-aos-delay="400">
+            <img th:src="@{/img/images/breadcrumb_shape02.png}" alt="img" data-aos="fade-up-left" data-aos-delay="400">
         </div>
     </section>
     <!-- breadcrumb-area-end -->
@@ -79,17 +80,17 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane show active" id="itemOne-tab-pane" role="tabpanel" aria-labelledby="itemOne-tab" tabindex="0">
                                 <a href="assets/img/products/products_img01.jpg" class="popup-image">
-                                    <img src="assets/img/products/products_img01.jpg" alt="img">
+                                    <img th:src="@{/img/products/products_img01.jpg}" alt="img">
                                 </a>
                             </div>
                             <div class="tab-pane" id="itemTwo-tab-pane" role="tabpanel" aria-labelledby="itemTwo-tab" tabindex="0">
-                                <a href="assets/img/products/products_img02.jpg" class="popup-image">
-                                    <img src="assets/img/products/products_img02.jpg" alt="img">
+                                <a th:href="@{/img/products/products_img02.jpg}" class="popup-image">
+                                    <img th:src="@{/img/products/products_img02.jpg}" alt="img">
                                 </a>
                             </div>
                             <div class="tab-pane" id="itemThree-tab-pane" role="tabpanel" aria-labelledby="itemThree-tab" tabindex="0">
-                                <a href="assets/img/products/products_img03.jpg" class="popup-image">
-                                    <img src="assets/img/products/products_img03.jpg" alt="img">
+                                <a th:href="@{/img/products/products_img03.jpg}" class="popup-image">
+                                    <img th:src="@{/img/products/products_img03.jpg}" alt="img">
                                 </a>
                             </div>
                             <div class="tab-pane" id="itemFour-tab-pane" role="tabpanel" aria-labelledby="itemFour-tab" tabindex="0">
@@ -101,22 +102,23 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="itemOne-tab" data-bs-toggle="tab" data-bs-target="#itemOne-tab-pane" type="button" role="tab" aria-controls="itemOne-tab-pane" aria-selected="true">
-                                    <img src="assets/img/products/products_img01.jpg" alt="img">
+                                    <img th:src="@{/img/products/products_img01.jpg}" alt="img">
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="itemTwo-tab" data-bs-toggle="tab" data-bs-target="#itemTwo-tab-pane" type="button" role="tab" aria-controls="itemTwo-tab-pane" aria-selected="false">
-                                    <img src="assets/img/products/products_img02.jpg" alt="img">
+                                    <img th:src="@{/img/products/products_img02.jpg}" alt="img">
+
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="itemThree-tab" data-bs-toggle="tab" data-bs-target="#itemThree-tab-pane" type="button" role="tab" aria-controls="itemThree-tab-pane" aria-selected="false">
-                                    <img src="assets/img/products/products_img03.jpg" alt="img">
+                                    <img th:src="@{/img/products/products_img03.jpg}" alt="img">
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="itemFour-tab" data-bs-toggle="tab" data-bs-target="#itemFour-tab-pane" type="button" role="tab" aria-controls="itemFour-tab-pane" aria-selected="false">
-                                    <img src="assets/img/products/products_img04.jpg" alt="img">
+                                    <img th:src="@{/img/products/products_img04.jpg}" alt="img">
                                 </button>
                             </li>
                         </ul>
@@ -167,8 +169,8 @@
                         </div>
                         <a href="product-details.html" class="buy-btn">Buy it Now</a>
                         <div class="product__wishlist-wrap">
-                            <a href="product-details.html"><i class="flaticon-love"></i>Add To Wishlist</a>
-                            <a href="product-details.html"><i class="flaticon-exchange"></i>Compare To Other</a>
+                            <a href="product-details.html"><i class="fa-regular fa-heart"></i>Add To Wishlist</a>
+                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i>Compare To Other</a>
                         </div>
                         <div class="product__details-bottom">
                             <ul class="list-wrap">
@@ -250,17 +252,17 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="http://localhost:8080/uploads${item.image}" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img01.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="sale-wrap">
                                             <span>New</span>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -282,17 +284,17 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="assets/img/products/products_img02.jpg" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img02.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="sale-wrap sale-wrap-two">
                                             <span>Sale!</span>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -314,14 +316,14 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="assets/img/products/products_img03.jpg" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img03.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -343,17 +345,17 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="assets/img/products/products_img04.jpg" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img04.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="sale-wrap sale-wrap-two">
                                             <span>Sale!</span>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -375,17 +377,17 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="assets/img/products/products_img05.jpg" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img05.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="sale-wrap">
                                             <span>New</span>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -407,17 +409,17 @@
                             <div class="swiper-slide">
                                 <div class="product__item">
                                     <div class="product__thumb">
-                                        <a href="product-details.html"><img src="assets/img/products/products_img07.jpg" alt="img"></a>
+                                        <a href="product-details.html"><img th:src="@{/img/products/products_img07.jpg}" alt="img"></a>
                                         <div class="product__action">
-                                            <a href="product-details.html"><i class="flaticon-love"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-loupe"></i></a>
-                                            <a href="product-details.html"><i class="flaticon-exchange"></i></a>
+                                            <a href="product-details.html"><i class="fa-regular fa-heart"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                            <a href="product-details.html"><i class="fa-solid fa-right-left"></i></a>
                                         </div>
                                         <div class="sale-wrap sale-wrap-two">
                                             <span>Sale!</span>
                                         </div>
                                         <div class="product__add-cart">
-                                            <a href="product-details.html" class="btn"><i class="flaticon-shopping-bag"></i>Add To Cart</a>
+                                            <a href="product-details.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                     <div class="product__content">
@@ -439,8 +441,8 @@
                         </div>
                     </div>
                     <div class="product__nav-wrap">
-                        <button class="product-button-prev"><i class="flaticon-left-chevron"></i></button>
-                        <button class="product-button-next"><i class="flaticon-right-arrow-angle"></i></button>
+                        <button class="product-button-prev"><i class="fa-solid fa-angle-left"></i></button>
+                        <button class="product-button-next"><i class="fa-solid fa-angle-right"></i></button>
                     </div>
                 </div>
             </div>
