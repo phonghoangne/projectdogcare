@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh Toán</title>
+</head>
+<body>
+<h1>Thông Tin Thanh Toán</h1>
+<!-- Form điền thông tin khách hàng -->
+<form th:action="@{/app/order/checkout}" th:object="${order}" method="post">
+    <input type="hidden" name="customer" value="1" /> <!-- Thay thế với ID thực tế nếu cần -->
+
+    <label for="phone">Số điện thoại:</label>
+    <input type="text" th:field="*{phone}" id="phone" required /><br>
+
+    <label for="address">Địa chỉ:</label>
+    <input type="text" th:field="*{address}" id="address" required /><br>
+
+    <button type="submit">Đặt Hàng</button>
+</form>
+
+<h2>Giỏ Hàng Của Bạn</h2>
+
+<!-- Kiểm tra giỏ hàng rỗng -->
+<div th:if="${cartItems == null}">
+    <p th:text="#{cart.empty}">Giỏ hàng của bạn đang trống.</p>
+</div>
+
+<!-- Bảng hiển thị giỏ hàng nếu có sản phẩm -->
+<table th:if="${cartItems != null}">
+    <thead>
+    <tr>
+        <th th:text="#{cart.product}">Sản phẩm</th>
+        <th th:text="#{cart.quantity}">Số lượng</th>
+        <th th:text="#{cart.price}">Giá</th>
+        <th th:text="#{cart.total}">Tổng</th>
+        <th th:text="#{cart.action}">Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item: ${cartItems}">
+        <td th:text="${item.productName}">Tên sản phẩm</td>
+        <td th:text="${item.quantity}">Số lượng</td>
+        <td th:text="${item.price}">Giá</td>
+        <td th:text="${item.totalPrice}">Tổng</td>
+        <td>
+            <a th:href="@{/app/cart/delete(cartId=${item.id},customerId=1)}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

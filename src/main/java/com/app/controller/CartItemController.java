@@ -56,5 +56,23 @@ public class CartItemController {
     // @requestparam
     // @pathvariable
 
+    @GetMapping("/viewProduct")
+    public String viewProduct(Model model) {
+        model.addAttribute("product", productService.findById(1));
+
+        return "cart1";
+    }
+
+    @PostMapping("/add")
+    public String addToCart(
+            @RequestParam Integer productId,
+            @RequestParam Integer customerId,
+            @RequestParam Integer quantity,
+            Model model) {
+        CartItem cartItem = cartItemService.addProductToCart(productId, customerId, quantity, Locale.ENGLISH);
+        model.addAttribute("message", "Sản phẩm đã được thêm vào giỏ hàng!");
+        return "redirect:/app/cart/view?customerId=" + customerId;
+    }
+
 }
 
