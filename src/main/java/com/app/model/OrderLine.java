@@ -19,9 +19,9 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer order;
+    private Integer orderId;
     @Column(name = "product_id" )
-    private Integer product;
+    private Integer productId;
     private Integer  quantity;
     private BigDecimal price;
 }

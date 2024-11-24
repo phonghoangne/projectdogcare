@@ -3,11 +3,13 @@ package com.app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "`order`")
+@Table(name = "p_order")
 public class Order {
 //    id int auto_increment primary key,
 //    customer_id int ,
@@ -20,7 +22,9 @@ public class Order {
         @Column(name = "customer_id")
         private Integer customer;
         private Date orderDate;
+        private String address;
+        private String phone;
         private String status;
-        private double totalAmount;
+        private BigDecimal totalAmount;
 
 }

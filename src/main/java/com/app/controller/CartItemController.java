@@ -46,4 +46,8 @@ public class CartItemController {
         return "redirect:/app/cart/view?customerId="+customerId;
 
     }
+    @GetMapping("/cartsimple")
+    public String cartSim(){
+        return "cart1";
+    }
 }
