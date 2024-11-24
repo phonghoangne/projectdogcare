@@ -69,7 +69,8 @@ public class AccountController {
                 cookiesService.add("tokenCookie",userCheckLogin.getToken(),30);
             }
             sessionService.set("userLogin",userCheckLogin);
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
             model.addAttribute("errorMessage",e.getMessage());
@@ -82,6 +83,8 @@ public class AccountController {
         model.addAttribute("accountRegister", new CustomerRegisterRequest());
         return "register";
     }
+
+
     @PostMapping("/register")
     public String postRegister(Model model ,@ModelAttribute(name = "accountRegister") CustomerRegisterRequest rq){
         try{

@@ -11,10 +11,15 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class CommonController {
+
     private final ProductCategoryService productCategoryService;
+
     public void getAllProductCategory(Model model)
     {
         List<ProductCategory> listCategory = productCategoryService.findAll();
         model.addAttribute("listProductCategory",listCategory);
     }
+
+
+
 }

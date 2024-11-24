@@ -43,6 +43,7 @@ public class OrderController {
     public String checkout(Order order,Model model){
         BigDecimal total = new BigDecimal(0);
         order.setOrderDate(new java.util.Date());
+        order.setTotalAmount(BigDecimal.ZERO);
         order = this.orderService.save(order);
         List<CartItemDto> cartItems = cartItemService.getAllByCustomerIdAndStatus(order.getCustomer(), "DRA");
 
@@ -63,6 +64,7 @@ public class OrderController {
         }
         order.setTotalAmount(total);
         order.setStatus("COM");
+        this.orderService.save(order);
         model.addAttribute("success","success");
         return "OrderComplete";
     }
