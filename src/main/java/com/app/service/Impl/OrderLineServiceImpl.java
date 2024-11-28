@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderLineServiceImpl implements OrderLineService {
     private final OrderLineRepository orderLineRepository;
+
     @Override
     public List<OrderLine> findAll() {
         return orderLineRepository.findAll();
@@ -27,13 +28,15 @@ public class OrderLineServiceImpl implements OrderLineService {
         return orderLineRepository.save(id);
 
     }
-    @Override
-        public void delete(Integer integer) {
-            OrderLine orderLine = orderLineRepository.findById(integer).
-                    orElseThrow(()-> new RuntimeException("OrderLine is not found"));
-            orderLineRepository.delete(orderLine);
 
-        }
+    @Override
+    public void delete(Integer integer)
+    {
+        OrderLine orderLine = orderLineRepository.findById(integer).
+                orElseThrow(() -> new RuntimeException("OrderLine is not found"));
+        orderLineRepository.delete(orderLine);
+
+    }
 
     @Override
     public OrderLine findById(Integer integer) {
