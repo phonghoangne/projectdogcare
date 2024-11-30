@@ -16,9 +16,6 @@ public class IndexController {
     private final MessageSource messageSource;
 
     private final CommonController commonController;
-
-
-
     @GetMapping("/home")
     public String index(Model model) {
         commonController.getAllProductCategory(model);
