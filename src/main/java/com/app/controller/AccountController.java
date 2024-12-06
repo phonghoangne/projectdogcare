@@ -29,10 +29,6 @@ public class AccountController {
     private  final CookiesService cookiesService;
 
     private final PasswordEncoder passwordEncoder;
-
-
-
-
     @GetMapping("/login")
     public String getLogin(Model model, @ModelAttribute CustomerLoginRequest rq)
     {
@@ -46,16 +42,12 @@ public class AccountController {
             cookieRequest.setRemember(true);
             model.addAttribute("accountLogin",cookieRequest);
         }else{
-            model.addAttribute("accountLogin",new CustomerLoginRequest());
+            model.addAttribute("accountLogin",new CustomerLoginRequest()); // gan 1 doi tuong rong de nguoi dung tu nhap thong tin
         }
         return "login";
     }
-
-
-
-
     @PostMapping  ("/login")
-    String postLogin(Model model,@ModelAttribute(name = "accountLogin") CustomerLoginRequest rq,HttpServletRequest  rqS, HttpServletResponse response)
+        String postLogin(Model model,@ModelAttribute(name = "accountLogin") CustomerLoginRequest rq,HttpServletRequest  rqS, HttpServletResponse response)
     {
         try{
             User userCheckLogin = userService.findByUserNameAndPassword(rq);
@@ -65,7 +57,6 @@ public class AccountController {
             if(rq.isRemember())
             {
                 cookiesService.add("userNameCookie",userCheckLogin.getUsername(),30);
-                cookiesService.add("passwordCookie",userCheckLogin.getPassword(),30);
                 cookiesService.add("tokenCookie",userCheckLogin.getToken(),30);
             }
             sessionService.set("userLogin",userCheckLogin);
@@ -121,9 +112,7 @@ public class AccountController {
 
         model.addAttribute("forgotPasswordForm" , new ForgotPasswordForm());
         return "forgot-password";
-
     }
-
     //    @RequestParam
 //    @PathVariable
 //    @ModelAttribute
