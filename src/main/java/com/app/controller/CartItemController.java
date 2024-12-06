@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.DTO.CartItemDto;
+import com.app.Exception.ObjectNotFoundException;
 import com.app.model.CartItem;
 import com.app.model.Product;
 import com.app.payload.request.ProductRequest;
@@ -40,6 +41,8 @@ public class CartItemController {
     @GetMapping("/add")
     public String addCart(Model model, @RequestParam Integer productId, @RequestParam Integer customerId, Locale locale)
     {
+        if(customerId==null)
+            throw new ObjectNotFoundException("bạn chưa đăng nhập");
         CartItem cartItem = cartItemService.addProductToCart(productId,customerId, 1,locale);
         model.addAttribute("succss","sucess");
         return "redirect:/app/cart/view?customerId="+customerId;
@@ -73,6 +76,7 @@ public class CartItemController {
         model.addAttribute("message", "Sản phẩm đã được thêm vào giỏ hàng!");
         return "redirect:/app/cart/view?customerId=" + customerId;
     }
+
 
 }
 

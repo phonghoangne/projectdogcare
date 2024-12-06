@@ -80,7 +80,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
         emailService.sendEmail(user.getEmail(),"Cap lai mat khau","mau khau cua ban la: " + password,null);
-
     }
 
 

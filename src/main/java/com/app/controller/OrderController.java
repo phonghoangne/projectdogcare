@@ -47,7 +47,7 @@ public class OrderController {
         order = this.orderService.save(order);
         List<CartItemDto> cartItems = cartItemService.getAllByCustomerIdAndStatus(order.getCustomer(), "DRA");
 
-        for (CartItemDto cartItem : cartItems) {
+        for (CartItemDto cartItem : cartItems) { // loop
             // tao line cho order
             OrderLine line = new OrderLine();
             line.setOrderId(order.getId());

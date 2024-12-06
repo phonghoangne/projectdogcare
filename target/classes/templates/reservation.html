@@ -1,0 +1,162 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Petpal - Pet Care and Pet Shop HTML Template</title>
+    <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <th:block th:replace="fragmentCss :: commonStyles"></th:block>
+</head>
+
+<body>
+
+<!--Preloader-->
+<div id="preloader">
+    <div id="loader" class="loader">
+        <div class="loader-container">
+            <div class="loader-icon"><img src="assets/img/logo/preloader.svg" alt="Preloader"></div>
+        </div>
+    </div>
+</div>
+<!--Preloader-end -->
+
+<!-- Scroll-top -->
+<button class="scroll__top scroll-to-target" data-target="html">
+    <i class="fas fa-angle-up"></i>
+</button>
+<!-- Scroll-top-end-->
+
+
+<th:block th:replace="~{header.html :: headerF}"></th:block>
+<!-- main-area -->
+<main class="fix">
+
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb__area fix">
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-lg-8">
+                    <div class="breadcrumb__content">
+                        <h3 class="title">Book your Slot</h3>
+                        <nav class="breadcrumb">
+                                <span property="itemListElement" typeof="ListItem">
+                                    <a href="index.html">Home</a>
+                                </span>
+                            <span class="breadcrumb-separator"><i class="flaticon-right-arrow-angle"></i></span>
+                            <span property="itemListElement" typeof="ListItem">Reservation</span>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="breadcrumb__img">
+                        <img src="assets/img/images/breadcrumb_img.png" alt="img" data-aos="fade-left" data-aos-delay="800">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb__shape-wrap">
+            <img src="assets/img/images/breadcrumb_shape01.png" alt="img" data-aos="fade-down-right" data-aos-delay="400">
+            <img src="assets/img/images/breadcrumb_shape02.png" alt="img" data-aos="fade-up-left" data-aos-delay="400">
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+
+    <!-- registration-area -->
+    <section class="registration__area-two">
+        <div class="container">
+            <div class="registration__inner-wrap-two">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="registration__form-wrap">
+                            <form action="#" class="registration__form">
+                                <h3 class="title">Request a Schedule</h3>
+                                <span>Your email address will not be published. Required fields are marked *</span>
+                                <div class="row gutter-20">
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <input type="text" placeholder="Full Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <input type="email" placeholder="E-mail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <input type="number" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <input type="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp select-grp">
+                                            <select name="Species" class="orderby">
+                                                <option value="Species">Species</option>
+                                                <option value="Cat">Cat</option>
+                                                <option value="Dog">Dog</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <input type="text" placeholder="Breed">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-grp select-grp">
+                                            <select name="Reason" class="orderby">
+                                                <option value="Reason For Appointment">Reason For Appointment</option>
+                                                <option value="Select One">Select One</option>
+                                                <option value="Select Two">Select Two</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-grp">
+                                            <textarea name="comment" placeholder="Special Note . . ."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn">Book Now <img src="assets/img/icon/right_arrow.svg" alt=""  class="injectable"></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="registration__img">
+                            <img src="assets/img/images/registration_img.png" alt="" data-aos="fade-right" data-aos-delay="400">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- registration-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+<!-- footer-area -->
+<div th:insert="footer :: footer"></div>
+<!-- footer-area-end -->
+
+
+<!-- JS here -->
+<th:block th:replace="fragmentJs :: fraScripts"></th:block>
+<script>
+    SVGInject(document.querySelectorAll("img.injectable"));
+</script>
+</body>
+
+</html>

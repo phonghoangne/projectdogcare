@@ -29,10 +29,6 @@ public class AccountController {
     private  final CookiesService cookiesService;
 
     private final PasswordEncoder passwordEncoder;
-
-
-
-
     @GetMapping("/login")
     public String getLogin(Model model, @ModelAttribute CustomerLoginRequest rq)
     {
@@ -63,7 +59,7 @@ public class AccountController {
             userService.save(userCheckLogin);
             model.addAttribute("message","Dang nhap thanh cong !");
             if(rq.isRemember())
-            {
+            { // jwt // header payload sign
                 cookiesService.add("userNameCookie",userCheckLogin.getUsername(),30);
                 cookiesService.add("passwordCookie",userCheckLogin.getPassword(),30);
                 cookiesService.add("tokenCookie",userCheckLogin.getToken(),30);
@@ -78,6 +74,7 @@ public class AccountController {
 
         return "login";
     }
+
     @GetMapping("/register")
     public String getRegister(Model model ){
         model.addAttribute("accountRegister", new CustomerRegisterRequest());
@@ -99,14 +96,13 @@ public class AccountController {
 
             userService.save(newUser);
             model.addAttribute("message", "Dang ki thanh cong !");
-
         }catch(Exception e){
             model.addAttribute("errorMessage",e.getMessage());
         }
         return "register";
-
-
     }
+
+
     @GetMapping("/logout")
     public String doLogout(HttpServletRequest request,HttpServletResponse respone, Model model){
         request.getSession().invalidate();

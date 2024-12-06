@@ -30,6 +30,7 @@ public class ProductController {
     public String getAllProduct(@ModelAttribute ProductRequest request, Model model) {
         if (request.getPage() == null) request.setPage(0);
         if (request.getPageSize() == null) request.setPageSize(10);
+
         GlobalResponsePagination result = productService.getAll(request);
         model.addAttribute("dataProduct", result);
         model.addAttribute("totalPage", result.getTotalPage());
