@@ -49,9 +49,10 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItem findById(Integer integer) {
-        return cartItemRepository.findById(integer).get();
+    public Optional<CartItem> findById(Integer integer) {
+        return Optional.empty();
     }
+
 
     @Override
     public CartItem addProductToCart(Integer productId, Integer customerId, Integer quantity ,Locale locale) {
@@ -86,10 +87,9 @@ public class CartItemServiceImpl implements CartItemService {
             dto.setCreateDate(itemCart.getCreatedDate());
             dto.setTotalPrice(itemCart.getTotalPrice());
             dto.setQuantity(itemCart.getQuantity());
-            Product product = productService.findById(itemCart.getProductId());
-            dto.setProductName(product.getProductName());
+            Optional<Product> product = productService.findById(itemCart.getProductId());
+            dto.setProductName(product.get().getProductName());
             cartItemDtos.add(dto);
-
         }
         return cartItemDtos;
     }

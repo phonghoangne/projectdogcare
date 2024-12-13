@@ -4,15 +4,23 @@ import com.app.model.Invoice;
 import com.app.repository.InvoiceRepository;
 import com.app.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
 
+
+    @Override
+    public Page<Invoice> findAll(Pageable pageable) {
+        return null;
+    }
 
     @Override
     public List<Invoice> findAll() {
@@ -23,6 +31,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Invoice save(Invoice invoice) {
         return invoiceRepository.save(invoice);
     }
+
+
 
     @Override
     public Invoice update(Invoice id) {
@@ -38,7 +48,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public Invoice findById(Integer integer) {
-        return invoiceRepository.findById(integer).get();
+    public Optional<Invoice> findById(Integer integer) {
+        return Optional.empty();
     }
+
 }

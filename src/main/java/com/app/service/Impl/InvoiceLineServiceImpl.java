@@ -1,12 +1,15 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.InvoiceLine;
+import com.app.model.User;
 import com.app.repository.InvoiceLineRepository;
 import com.app.service.InvoiceLineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +39,13 @@ public class InvoiceLineServiceImpl implements InvoiceLineService{
     }
 
     @Override
-    public InvoiceLine findById(Integer integer) {
-        return invoiceLineRepository.findById(integer).get();
+    public Optional<InvoiceLine> findById(Integer integer) {
+        return Optional.empty();
+    }
+
+
+    @Override
+    public List<InvoiceLine> findAllByBill(Invoice invoice) {
+        return List.of();
     }
 }

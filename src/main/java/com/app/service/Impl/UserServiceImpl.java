@@ -1,11 +1,14 @@
 package com.app.service.Impl;
 
 import com.app.DTO.CustomerLoginRequest;
+import com.app.model.Invoice;
 import com.app.model.User;
 import com.app.repository.UserRepository;
 import com.app.service.UserService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,9 +50,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Integer integer) {
-        return userRepository.findById(integer).get();
+    public Optional<User> findById(Integer integer) {
+        return Optional.empty();
     }
+
 
     @Override
     public User findByUserNameAndPassword(CustomerLoginRequest request) {
@@ -82,6 +86,12 @@ public class UserServiceImpl implements UserService {
         emailService.sendEmail(user.getEmail(),"Cap lai mat khau","mau khau cua ban la: " + password,null);
 
     }
+
+    @Override
+    public Page<User> findAll(Pageable pageable) {
+        return null;
+    }
+
 
 
     public  String  generateRandomString(int length) {

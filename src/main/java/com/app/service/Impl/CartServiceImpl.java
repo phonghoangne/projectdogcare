@@ -1,12 +1,14 @@
 package com.app.service.Impl;
 
 import com.app.model.Cart;
+import com.app.model.Invoice;
 import com.app.repository.CartRepository;
 import com.app.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +37,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart findById(Integer integer) {
-        return cartRepository.findById(integer).get();
+    public Optional<Cart> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

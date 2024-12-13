@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.ProductCategory;
 import com.app.repository.ProductCategoryRepository;
 import com.app.service.ProductCategoryService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +36,9 @@ ProductCategory productCategory = productCategoryRepository.findById(integer).
 productCategoryRepository.delete(productCategory);
     }
 
+
     @Override
-    public ProductCategory findById(Integer integer) {
-        return productCategoryRepository.findById(integer).get();
+    public Optional<ProductCategory> findById(Integer id) {
+        return Optional.empty();
     }
 }

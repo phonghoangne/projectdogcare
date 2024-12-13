@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.Order;
 import com.app.repository.OrderRepository;
 import com.app.service.OrderService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +38,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order findById(Integer integer) {
-         return orderRepository.findById(integer).get();
+    public Optional<Order> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.Payment;
 import com.app.repository.PaymentRepository;
 import com.app.service.PaymentService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,10 +36,10 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.delete(payment);
     }
 
-
-
     @Override
-    public Payment findById(Integer integer) {
-        return paymentRepository.findById(integer).orElseThrow(()->new RuntimeException("Payment not found"));
+    public Optional<Payment> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

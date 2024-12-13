@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.OrderLine;
 import com.app.repository.OrderLineRepository;
 import com.app.service.OrderLineService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +38,9 @@ public class OrderLineServiceImpl implements OrderLineService {
         }
 
     @Override
-    public OrderLine findById(Integer integer) {
-        return null;
+    public Optional<OrderLine> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

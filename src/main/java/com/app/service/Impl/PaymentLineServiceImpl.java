@@ -1,6 +1,6 @@
 package com.app.service.Impl;
 
-import com.app.model.Payment;
+import com.app.model.Invoice;
 import com.app.model.PaymentLine;
 import com.app.repository.PaymentLineRepository;
 import com.app.service.PaymentLineService;
@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,9 @@ public class PaymentLineServiceImpl implements PaymentLineService {
     }
 
     @Override
-    public PaymentLine findById(Integer integer) {
-        return paymentLineRepository.findById(integer).get();
+    public Optional<PaymentLine> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

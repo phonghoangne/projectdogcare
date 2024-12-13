@@ -1,12 +1,14 @@
 package com.app.service.Impl;
 
 import com.app.model.Customer;
+import com.app.model.Invoice;
 import com.app.repository.CustomerRepository;
 import com.app.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +37,9 @@ Customer customer = customerRepository.findById(integer).orElseThrow(()-> new Ru
     }
 
     @Override
-    public Customer findById(Integer integer) {
-        return customerRepository.findById(integer).get();
+    public Optional<Customer> findById(Integer integer) {
+        return Optional.empty();
     }
+
+
 }

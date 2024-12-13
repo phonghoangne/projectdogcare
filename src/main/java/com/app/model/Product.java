@@ -20,4 +20,5 @@ public class Product {
     @Column(name = "category_id")
     private Integer categoryId;
     private String image;
+
 }

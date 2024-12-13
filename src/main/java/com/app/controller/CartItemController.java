@@ -27,7 +27,6 @@ public class CartItemController {
         try {
             List<CartItemDto> cartItemDtos = cartItemService.getAllByCustomerIdAndStatus(customerId, "DRA");
             model.addAttribute("listCart", cartItemDtos);
-
         } catch (Exception e) {
         }
         return "cartItem";

@@ -1,9 +1,11 @@
 package com.app.service.Impl;
 
+import com.app.model.Invoice;
 import com.app.model.Product;
 import com.app.payload.request.ProductRequest;
 import com.app.payload.response.GlobalResponsePagination;
 import com.app.repository.ProductRepository;
+import com.app.repository.UserRepository;
 import com.app.service.ProductService;
 import com.app.specification.ProductSpecification;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +17,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
 
     @Override
@@ -45,9 +49,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findById(Integer integer) {
-        return productRepository.findById(integer)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+    public Optional<Product> findById(Integer integer) {
+        return Optional.empty();
+    }
+
+
+    @Override
+    public void delete(Product product) {
+
     }
 
     @Override
@@ -93,5 +102,13 @@ public class ProductServiceImpl implements ProductService {
         Specification<Product> spec = ProductSpecification.likeName(name);
         return productRepository.findAll(spec);
     }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable) {
+        return null;
+    }
+
+
+
 
 }
