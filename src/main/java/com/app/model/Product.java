@@ -1,12 +1,13 @@
 package com.app.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.math.BigDecimal;
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "product")
 public class Product {
     @Id

@@ -1,8 +1,12 @@
 package com.app.service.Impl;
 
+import com.app.DTO.ProductDto;
+import com.app.Mapper.ProductMapper;
 import com.app.model.Product;
+import com.app.model.ProductCategory;
 import com.app.payload.request.ProductRequest;
 import com.app.payload.response.GlobalResponsePagination;
+import com.app.repository.ProductCategoryRepository;
 import com.app.repository.ProductRepository;
 import com.app.service.ProductService;
 import com.app.specification.ProductSpecification;
@@ -15,13 +19,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
-
+    private final ProductCategoryRepository productCategoryRepository;
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -92,6 +97,21 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchProductByName(String name) {
         Specification<Product> spec = ProductSpecification.likeName(name);
         return productRepository.findAll(spec);
+    }
+
+    @Override
+    public List<ProductDto> getAllProductDto() {
+        List<Product> products = productRepository.findAll();
+        List<ProductDto> productDtos = products.stream().map(item -> {
+            ProductCategory productCategory = productCategoryRepository.findById(item.getCategoryId())
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+           ProductDto productDto = ProductMapper.toProductDto(item, productCategory.getCategoryName());
+            return productDto;
+        }).collect(Collectors.toList());
+
+
+
+        return productDtos;
     }
 
 }

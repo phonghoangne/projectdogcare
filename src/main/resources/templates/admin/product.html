@@ -10,7 +10,7 @@
 <div class="container">
     <h2>Create Product</h2>
 
-    <form th:action="@{/product/save}" th:object="${product}" method="post">
+    <form th:action="@{/product/save}" th:object="${productSave}" method="post">
         <!-- Tên sản phẩm -->
         <div class="form-group">
             <label for="productName">Product Name:</label>
@@ -41,9 +41,9 @@
             <select id="categoryId" th:field="*{categoryId}" class="form-control">
                 <option value="" disabled selected>Select Category</option>
                 <!-- Lặp qua danh sách các category -->
-                <option th:each="category : ${categories}"
-                        th:value="${category.id}"
-                        th:text="${category.name}"></option>
+                <option th:each="item : ${productCategory}"
+                        th:value="${item.id}"
+                        th:text="${item.getCategoryName()}"></option>
             </select>
         </div>
 
@@ -57,6 +57,34 @@
     </form>
 
     <p th:if="${param.success}" style="color: green; font-weight: bold;">Product saved successfully!</p>
+
+
+        <h4>Order Lines:</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Animal Type</th>
+                <th>Image</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${products}">
+                <td th:text="${item.getId()}"></td>
+                <td th:text="${item.getProductName()}"></td>
+                <td th:text="${item.getDescription()}"></td>
+                <td th:text="${item.getPrice()}"></td>
+                <td th:text="${item.getCategoryName()}"></td>
+                <td th:text="${item.getAnimalType()}"></td>
+                <td> <img th:src="@{http://localhost:8080/uploads/__${item.getImage()}__}" alt="img"></td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
 </div>
 </body>
 </html>
