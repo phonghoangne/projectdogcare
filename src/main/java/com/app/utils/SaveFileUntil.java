@@ -7,16 +7,17 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class SaveFileUntil {
-    public static void save(MultipartFile file ,Path root ) {
-        Path filePath = root;
-        System.out.println("filePath : "+filePath.toString());
+    public static void save(MultipartFile file ,Path root )
+    {
+        System.out.println("filePath : "+root.toString());
         try {
-            if (!Files.exists(filePath)) {
-                Files.createDirectory(filePath);
+            if (!Files.exists(root)) {
+                Files.createDirectory(root);
             }
-            Files.copy(file.getInputStream(), filePath.resolve(file.getOriginalFilename()),
+            Files.copy(file.getInputStream(), root.resolve(file.getOriginalFilename()),
                     StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
     }

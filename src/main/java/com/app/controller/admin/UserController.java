@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user-admin")
 @RequiredArgsConstructor
 public class UserController {
-         private final UserService userService;
+    private final UserService userService;
 
-         @RequestMapping("/list")
-            public String listUser(){
-                return "admin/user";
-            }
+    @RequestMapping("/list")
+    public String listUser() {
+        return "admin/user";
+    }
 }

@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -49,9 +51,11 @@ public class AccountController {
 
 
 
-
+    // Date : yyyy-mm-dd
+    // LocalDateTime: yyyy-mm-dd hh:mm:ss
     @PostMapping  ("/login")
-    String postLogin(Model model,@ModelAttribute(name = "accountLogin") CustomerLoginRequest rq,HttpServletRequest  rqS, HttpServletResponse response)
+    String postLogin(Model model, @ModelAttribute(name = "accountLogin") CustomerLoginRequest rq
+            , @RequestParam("test") Boolean values, HttpServletRequest  rqS, HttpServletResponse response)
     {
         try{
             User userCheckLogin = userService.findByUserNameAndPassword(rq);
