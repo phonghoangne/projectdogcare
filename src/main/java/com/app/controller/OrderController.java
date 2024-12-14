@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/app/order")
@@ -57,7 +58,7 @@ public class OrderController {
             total = total.add(cartItem.getPrice().multiply(new BigDecimal(cartItem.getQuantity())));
 
             // cap nhat trang thai cua cart item
-            CartItem cartItem1 =cartItemService.findById(cartItem.getId());
+            CartItem cartItem1 =cartItemService.findById(cartItem.getId()).get();
             cartItem1.setStatus("COM");
             cartItemService.save(cartItem1);
         }

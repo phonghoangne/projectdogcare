@@ -189,5 +189,11 @@ public class AdminController  {
     }
 
 
-
+    @GetMapping("/product/list")
+    public String getAllProductList(Model model , @RequestParam(defaultValue = "0",value = "page",required = false) int page){
+       model.addAttribute("productEdit",new Product());
+        model.addAttribute("category",productCategoryService.findAll());
+        model.addAttribute("productList",productService.findAll());
+        return "curdProduct";
+    }
 }
