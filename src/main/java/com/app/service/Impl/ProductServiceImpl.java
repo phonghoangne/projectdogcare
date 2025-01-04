@@ -50,13 +50,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> findById(Integer integer) {
-        return Optional.empty();
+        return productRepository.findById(integer);
     }
 
 
     @Override
     public void delete(Product product) {
-
+        try{
+            productRepository.delete(product);
+        }catch(RuntimeException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -17,6 +17,27 @@
 <body>
 <!-- Header -->
 <th:block th:replace="~{header.html :: headerF}"></th:block>
+<div th:if="${listCart == null}">
+    <p th:text="#{cart.empty}"></p>
+</div>
+
+<table th:if="${listCart != null}">
+    <tr>
+        <th th:text="#{cart.product}"></th>
+        <th th:text="#{cart.quantity}"></th>
+        <th th:text="#{cart.price}"></th>
+        <th th:text="#{cart.total}"></th>
+        <th th:text="#{cart.action}"></th>
+    </tr>
+
+    <tr th:each="item: ${listCart}">
+        <td th:text="${item.productName}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.totalPrice}"></td>
+        <td > <a th:href="@{/app/cart/delete(cartId=${item.id},customerId=1)}">delete</a></td>
+    </tr>
+</table>
 
 <!-- Footer -->
 <div th:insert="footer :: footer"></div>

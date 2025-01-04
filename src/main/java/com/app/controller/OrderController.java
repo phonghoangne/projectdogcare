@@ -22,14 +22,12 @@ import java.util.Optional;
 @RequestMapping("/app/order")
 @RequiredArgsConstructor
 public class OrderController {
-    @Autowired
-    private OrderService orderService;
+
+    private final  OrderService orderService;
 
     private final OrderLineService orderLineService;
 
-
-    @Autowired
-    private CartItemService cartItemService;
+    private final  CartItemService cartItemService;
 
     @GetMapping("/checkout")
     public String getCheckout(@RequestParam Integer customerId, Model model) {

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Petpal - Pet Care and Pet Shop HTML Template</title>
+  <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- CSS here -->
+  <th:block th:replace="fragmentCss :: commonStyles"></th:block>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+
+<body>
+<!-- header -->
+<th:block th:replace="~{header.html :: headerF}"></th:block>
+
+<!-- end header -->
+
+<section class="location">
+  <div class="container">
+    <div class="location__container">
+      <div class="location__history">
+        <a href="">
+          Trang chủ
+        </a>
+      </div>
+      <div class="">/</div>
+
+    </div>
+  </div>
+</section>
+
+<main>
+  <section>
+    <div class="container">
+      <div class="layout__container">
+        <div class="layout__container-head">
+          <div class="layout__container-head-title">
+            <h3>
+              CURD
+            </h3>
+          </div>
+
+          <!--                        <div class="layout__container-head-filter">-->
+          <!--                            <div class="layout__container-head-filter-icon">Sort <i class="fa-solid fa-angle-down"></i>-->
+          <!--                            </div>-->
+          <!--                            <div class="layout__container-head-filter-option">-->
+          <!--                                <ul>-->
+          <!--                                    <li>Từ thấp đến lớn</li>-->
+          <!--                                    <li>Từ lớn đến thấp</li>-->
+          <!--                                    <li>Theo giá tiền</li>-->
+          <!--                                    <li>Theo ngày xuất bản</li>-->
+          <!--                                </ul>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+        </div>
+        <div class="layout__container-body">
+          <th:block th:insert="~{/common/fragument.html :: body_left_admin}"></th:block>
+
+
+          <div class="layout__container-body-right">
+            <h1 class="h1" >Hello Administration</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</main>
+
+<th:block th:replace="~{fragmentJs :: fraScripts}"></th:block>
+
+<div th:insert="footer :: footer"></div>
+<script>
+  const selectForm = document.querySelector('.layout__container-body-right-title');
+  const selectCategory = document.querySelector('.filter__category-head');
+
+  selectCategory.addEventListener('click', () => {
+    const parentElement = selectCategory.parentElement;
+    const icon = selectCategory.querySelector('i');
+    icon.style.transform = icon.style.transform == 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+    const list = parentElement.querySelector('.filter__category-list');
+    list.style.display = list.style.display == 'none' ? 'block' : 'none';
+
+  })
+
+  selectForm.addEventListener('click', () => {
+    const parentElement = selectForm.parentElement;
+    const icon = selectForm.querySelector('i');
+    icon.style.transform = icon.style.transform == 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+    const form = parentElement.querySelector('form');
+    form.style.display = form.style.display == 'none' ? 'flex' : 'none';
+  })
+</script>
+
+</html>

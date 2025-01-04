@@ -2,6 +2,8 @@ package com.app.service.Impl;
 
 import com.app.model.Cart;
 import com.app.model.Invoice;
+import com.app.model.Product;
+import com.app.model.User;
 import com.app.repository.CartRepository;
 import com.app.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -41,5 +43,10 @@ public class CartServiceImpl implements CartService {
         return Optional.empty();
     }
 
+
+    @Override
+    public Integer findMaxId() {
+        return cartRepository.findMaxId();
+    }
 
 }

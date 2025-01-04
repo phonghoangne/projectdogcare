@@ -50,10 +50,8 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public Optional<CartItem> findById(Integer integer) {
-        return Optional.empty();
+        return cartItemRepository.findById(integer);
     }
-
-
     @Override
     public CartItem addProductToCart(Integer productId, Integer customerId, Integer quantity ,Locale locale) {
         Optional<Product> product = productRepository.findById(productId);
@@ -72,7 +70,6 @@ public class CartItemServiceImpl implements CartItemService {
         // divide = /
         // subtract = -
         return this.cartItemRepository.save(itemSave);
-
     }
 
     @Override
@@ -93,4 +90,30 @@ public class CartItemServiceImpl implements CartItemService {
         }
         return cartItemDtos;
     }
+
+    @Override
+    public void clearCart(Integer customerId) {
+        List<CartItem> cartItem = cartItemRepository.findByCustomerId(customerId);
+        cartItemRepository.deleteAll(cartItem);
+    }
+
+    @Override
+    public List<CartItem> findByCustomerId(Integer customerId) {
+        return cartItemRepository.findByCustomerId(customerId);
+    }
+
+    @Override
+    public void removeProductFromCart(Integer productId, Integer customerId) {
+        CartItem cartItem = cartItemRepository.findByProductIdAndCustomerId(productId,customerId).orElseThrow(() -> new ObjectNotFoundException("CartItem not found"));
+        cartItemRepository.delete(cartItem);
+    }
+
+
+
+    @Override
+    public Optional<CartItem> findByProductIdAndCustomerId(Integer productId, Integer customerId) {
+        return cartItemRepository.findByProductIdAndCustomerId(productId,customerId);
+    }
+
+
 }

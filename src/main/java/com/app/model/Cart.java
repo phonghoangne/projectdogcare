@@ -1,11 +1,15 @@
 package com.app.model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cart")
 public class Cart {
 //    id int auto_increment primary key,
@@ -21,5 +25,6 @@ public class Cart {
     @Temporal(TemporalType.TIMESTAMP) // anh xa datetime trong sql thanh date trong java
     private Date createdDate;
     private BigDecimal total;
+
 
 }

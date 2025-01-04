@@ -1,34 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<div th:if="${listCart == null}">
-    <p th:text="#{cart.empty}"></p>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Petpal - Pet Care and Pet Shop HTML Template</title>
+    <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <th:block th:replace="fragmentCss :: commonStyles"></th:block>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Basic reset and box sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #002169;
+            color: white;
+            font-size: 16px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #f44336;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: #888;
+        }
+
+        /* Styling for the container */
+        .cart-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quantity-btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btns button {
+            background-color: #894b8d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-btns button:hover {
+            background-color: #002169;
+        }
+
+        .quantity-btns input {
+            text-align: center;
+            width: 40px;
+            height: 30px;
+            margin: 0 5px;
+        }
+
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- Header -->
+<th:block th:replace="~{header.html :: headerF}"></th:block>
+
+<div class="cart-container">
+    <div th:if="${listCart == null}" class="empty-cart">
+        <p th:text="#{cart.empty}"></p>
+    </div>
+
+    <table th:if="${listCart != null}">
+        <thead>
+        <tr>
+            <th th:text="#{cart.product}"></th>
+            <th th:text="#{cart.quantity}"></th>
+            <th th:text="#{cart.price}"></th>
+            <th th:text="#{cart.total}"></th>
+            <th th:text="#{cart.action}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${listCart}">
+            <td th:text="${item.productName}"></td>
+            <td>
+                <div class="quantity-btns">
+                    <button th:onclick="|window.location.href='@{/app/cart/updateQuantity(cartId=${item.id},customerId=1,quantity=${item.quantity-1})}'|">-</button>
+                    <input type="text" th:value="${item.quantity}" disabled />
+                    <button th:onclick="|window.location.href='@{/app/cart/updateQuantity(cartId=${item.id},customerId=1,quantity=${item.quantity+1})}'|">+</button>
+                </div>
+            </td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.totalPrice}"></td>
+            <td>
+                <a th:href="@{/app/cart/delete(cartId=${item.id},customerId=1)}">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Checkout Button -->
+    <button class="checkout-btn" th:onclick="|window.location.href='@{/app/cart/checkout}'|">
+        <span>Checkout</span>
+    </button>
 </div>
 
-<table th:if="${listCart != null}">
-    <tr>
-        <th th:text="#{cart.product}"></th>
-        <th th:text="#{cart.quantity}"></th>
-        <th th:text="#{cart.price}"></th>
-        <th th:text="#{cart.total}"></th>
-        <th th:text="#{cart.action}"></th>
-    </tr>
+<!-- Footer -->
+<div th:insert="footer :: footer"></div>
+<th:block th:replace="fragmentJs :: fraScripts"></th:block>
 
-    <tr th:each="item: ${listCart}">
-        <td th:text="${item.productName}"></td>
-        <td th:text="${item.quantity}"></td>
-        <td th:text="${item.price}"></td>
-        <td th:text="${item.totalPrice}"></td>
-        <td > <a th:href="@{/app/cart/delete(cartId=${item.id},customerId=1)}">delete</a></td>
-    </tr>
-</table>
-
-
-
+<!-- JavaScript -->
+<script src="assets/js/scripts.js"></script> <!-- Your main JS file -->
 </body>
+
 </html>

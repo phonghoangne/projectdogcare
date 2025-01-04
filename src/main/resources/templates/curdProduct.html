@@ -1,14 +1,151 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Petpal - Pet Care and Pet Shop HTML Template</title>
+<meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+<!-- Place favicon.ico in the root directory -->
 
-<head th:replace="~{/common/fragument.html :: head(title='Management')}">
+<!-- CSS here -->
+<th:block th:replace="fragmentCss :: commonStyles"></th:block>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    /* Container Styles */
+    .location__container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .layout__container-body-right-form {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .layout__container-body-right-form:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Button Styles */
+    .button__item {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button__item:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .button__item:active {
+        background-color: #003f7f;
+        transform: scale(0.98);
+    }
+
+    /* Table Styles */
+    .book-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .book-table th {
+        background-color: #f1f1f1;
+        font-weight: bold;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .book-table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .book-table tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    /* Pagination Styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 8px;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pagination li.active {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-color: #007bff;
+    }
+
+    .pagination li:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .location__container {
+            flex-direction: column;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .button__item {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .book-table th, .book-table td {
+            padding: 8px;
+            font-size: 12px;
+        }
+    }
+
+</style>
 
 </head>
 
 
 <body>
     <!-- header -->
-    <th:block th:insert="~{/common/fragument.html :: header}"></th:block>
+    <th:block th:replace="~{header.html :: headerF}"></th:block>
+
     <!-- end header -->
 
     <section class="location">
@@ -19,14 +156,6 @@
                         Trang chủ
                     </a>
                 </div>
-                <div class="">/</div>
-
-                <div class="location__now">
-                    <a th:href="@{/admin/book}">
-                       Management Book.
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -47,10 +176,10 @@
                         <div class="layout__container-body-right">
                             <div class="layout__container-body-right-form">
                                 <div class="layout__container-body-right-title">
-                                    Form CURD
+                                     CURD Product
                                     <i class="fa-solid fa-angle-down"></i>
                                 </div>
-                                <form th:action="@{/admin/book/save}" method="post" th:object="${productEdit}"  id="edit_book_form" enctype="multipart/form-data">
+                                <form th:action="@{/admin/product/save}" method="post" th:object="${editProduct}"  id="edit_book_form" enctype="multipart/form-data">
                                     <div class="alert__container top"  th:if="${success != null}">
                                         <div class="alert__container-item success">
                                             <div class="alert__content">
@@ -70,7 +199,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="productName">Giá:</label>
+                                        <label for="productName">Tên sản phẩm</label>
                                         <input type="text" id="productName" name="productName"  th:field="*{productName}">
                                     </div>
 
@@ -80,7 +209,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="description">Nhà Xuất Bản:</label>
+                                        <label for="description">Chi tiết:</label>
                                         <input type="text" id="description" name="description"  th:field="*{description}">
                                     </div>
                                     <div class="form-group">
@@ -96,7 +225,6 @@
                                         <input type="file" id="file" name="file">
                                     </div>
                                     <div class="button-group">
-                                        <button   class="button__item button__item-new" onclick="clearForm()" type="button">New</button>
                                         <button   class="button__item button__item-edit" type="submit">Edit</button>
                                         <button  class="button__item button__item-save" type="submit">Save</button>
 <!--                                        <button   class="button__item button__item-delete" type="button"  onclick="deleteBook()" th:disabled="*{!(id >= 1)}">delete</button>-->
@@ -122,14 +250,12 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tên Sách</th>
-                                <th>Loại sách</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Danh mục sản phẩm</th>
                                 <th>Giá</th>
-                                <th>Ngày phát hành</th>
-                                <th>Nhà xuất bản</th>
-                                <th>Số trang</th>
-                                <th>Tác giả</th>
-                                <th>Description</th>
+
+                                <th>Product image</th>
+                                <th>Chi tiết sản phẩm</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
@@ -139,15 +265,12 @@
                                 <td class="text-eclipse" th:text="${iProduct.productName}">Tiểu thuyết A</td>
                                 <td class="text-eclipse" th:text="${iProduct.productName}">Tiểu thuyết A</td>
                                 <td class="text-eclipse"  th:text="${iProduct.price}">Tiểu thuyết A</td>
-                                <td class="text-eclipse" th:text="${iProduct.description}">Tiểu thuyết A</td>
-                                <td class="text-eclipse" th:text="${iProduct.price}">Tiểu thuyết A</td>
                                 <td class="text-eclipse" th:text="${iProduct.image}">Tiểu thuyết A</td>
-                                <td class="text-eclipse" th:text="${iProduct.description}">Tiểu thuyết A</td>
                                 <td class="text-eclipse" th:text="${iProduct.description}">Tiểu thuyết A</td>
                                 <td>
                                     <div class="action__container">
-                                        <a class="action-button edit-button" th:href="@{/admin/book/edit(id=${iProduct.id})}">Sửa</a>
-                                        <a class="action-button delete-button "  th:href="@{/admin/book/delete(id=${iProduct.id})}">Xóa</a>
+                                        <a class="action-button edit-button" th:href="@{/admin/product/edit(id=${iProduct.id})}">Sửa</a>
+                                        <a class="action-button delete-button "  th:href="@{/admin/product/delete(id=${iProduct.id})}">Xóa</a>
                                     </div>
                                 </td>
                             </tr>
@@ -168,7 +291,8 @@
     </main>
 
 
-    <th:block th:insert="~{/common/fragument.html :: footer}"></th:block>
+    <th:block th:replace="~{fragmentJs :: fraScripts}"></th:block>
+    <div th:insert="footer :: footer"></div>
 </body>
 
 <script th:src="@{/js/header-overlay.js}"></script>
