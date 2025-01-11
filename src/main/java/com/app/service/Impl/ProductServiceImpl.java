@@ -1,6 +1,7 @@
 package com.app.service.Impl;
 
 import com.app.DTO.ProductDto;
+import com.app.Exception.ObjectNotFoundException;
 import com.app.Mapper.ProductMapper;
 import com.app.model.Product;
 import com.app.model.ProductCategory;
@@ -34,6 +35,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(Product product) {
+        if(productRepository.existsByProductName(product.getProductName()))
+        {
+            throw new ObjectNotFoundException("ten product da ton tai");
+        }
         return productRepository.save(product);
     }
 

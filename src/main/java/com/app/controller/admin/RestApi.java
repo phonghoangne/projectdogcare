@@ -1,10 +1,12 @@
 package com.app.controller.admin;
 
 import com.app.DTO.ProductDto;
+import com.app.Exception.ObjectNotFoundException;
 import com.app.model.Product;
 import com.app.payload.request.ProductRequest;
 import com.app.payload.response.GlobalResponsePagination;
 import com.app.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +38,7 @@ public class RestApi {
     @GetMapping("/getProductByName") // get post
     public ResponseEntity<?> getProductByName( @RequestParam("productName") String productName){
         List<Product> listData = productService.searchProductByName(productName);
-        Map<String , Object> mapResponse = new HashMap<>();
+        Map<String ,Object> mapResponse = new HashMap<>();
         mapResponse.put("statusCode", HttpStatus.OK.value());
         mapResponse.put("data",listData);
         mapResponse.put("message","Call API sucess");
@@ -46,7 +48,7 @@ public class RestApi {
     @GetMapping("/getPaginationProduct") // get post
     public ResponseEntity<?> getPaginationProduct( @ModelAttribute  ProductRequest productRequest){
         GlobalResponsePagination listData = productService.getAll(productRequest);
-        Map<String , Object> mapResponse = new HashMap<>();
+        Map<String ,Object> mapResponse = new HashMap<>();
         mapResponse.put("statusCode", HttpStatus.OK.value());
         mapResponse.put("data",listData.getData());
         mapResponse.put("totalItem",listData.getTotalItem());
@@ -56,4 +58,9 @@ public class RestApi {
         mapResponse.put("error","");
         return ResponseEntity.ok(mapResponse);
     }
+
+    // create , update , read
+
+
+
 }

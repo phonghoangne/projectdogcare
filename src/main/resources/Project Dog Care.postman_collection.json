@@ -28,14 +28,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/v1/api/getAllProduct",
+							"raw": "{{host}}/v1/api/product/getAll?page=5&pageSize=5",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"v1",
 								"api",
-								"getAllProduct"
+								"product",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "5"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -90,6 +101,131 @@
 									"key": "categoryId",
 									"value": "1"
 								},
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all product By Name Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"dsaklfjsdlkfjlksdafjlsdajflkdsajflksdjalfkjsaldkfjlskdafjsldakfjlkdsajflksdajfklsdf\",\r\n    \"description\": \"description\",\r\n    \"price\": 5.0,\r\n    \"animalType\": \"mèo\",\r\n    \"categoryId\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/api/product/save",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"product",
+								"save"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all product By Name Copy 3",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"product APIUpdate\",\r\n    \"description\": \"description\",\r\n    \"price\": 5.0,\r\n    \"animalType\": \"mèo\",\r\n    \"categoryId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/api/product/update/23",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"product",
+								"update",
+								"23"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all product By Name Copy 4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"product APIUpdate\",\r\n    \"description\": \"description\",\r\n    \"price\": 5.0,\r\n    \"animalType\": \"mèo\",\r\n    \"categoryId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/api/product/delete/24",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"product",
+								"delete",
+								"24"
+							],
+							"query": [
 								{
 									"key": "page",
 									"value": "0",
