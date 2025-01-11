@@ -1,13 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{/common/fragument.html :: head(title='Cart')}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Petpal - Pet Care and Pet Shop HTML Template</title>
+    <meta name="description" content="Petpal - Pet Care and Pet Shop HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <th:block th:replace="fragmentCss :: commonStyles"></th:block>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Basic reset and box sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #002169;
+            color: white;
+            font-size: 16px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #f44336;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: #888;
+        }
+
+        /* Styling for the container */
+        .cart-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quantity-btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btns button {
+            background-color: #894b8d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-btns button:hover {
+            background-color: #002169;
+        }
+
+        .quantity-btns input {
+            text-align: center;
+            width: 40px;
+            height: 30px;
+            margin: 0 5px;
+        }
+
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 
 </head>
-
 <body>
 <!-- message_header -->
-<th:block th:insert="~{/common/fragument.html :: header}"></th:block>
+<th:block th:replace="~{header.html :: headerF}"></th:block>
 
 <!-- end header -->
 
@@ -47,7 +170,7 @@
                     </thead>
 
                     <tbody>
-                    <tr th:each="item : ${cartList}" th:attr="data-cart-item-id=${item.product.id}">
+
                         <td>
                             <div class="table__product-container">
                                 <div class="table__product-img">
@@ -255,7 +378,8 @@
     </section>
 </main>
 
-<th:block th:insert="~{/common/fragument.html :: footer}"></th:block>
+<div th:insert="footer :: footer"></div>
+
 </body>
 
 <script th:src="@{/js/header-overlay.js}"></script>

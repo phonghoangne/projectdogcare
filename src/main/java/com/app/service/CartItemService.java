@@ -14,6 +14,8 @@ public interface CartItemService extends BaseModel<CartItem,Integer> {
    List<CartItem> findByCustomerId(Integer customerId);
    void removeProductFromCart(Integer productId, Integer customerId);
    Optional<CartItem> findByProductIdAndCustomerId(Integer productId, Integer customerId);
+     CartItem updateCartItem(Integer cartId, Integer quantity);
+     void checkoutCart(Integer customerId);
+     }
 
 
-}

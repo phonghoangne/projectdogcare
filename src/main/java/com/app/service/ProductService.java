@@ -1,5 +1,6 @@
 package com.app.service;
 
+import com.app.DTO.ProductDto;
 import com.app.model.Invoice;
 import com.app.model.Product;
 import com.app.payload.request.ProductRequest;
@@ -15,6 +16,7 @@ public interface ProductService extends BaseModel<Product,Integer> {
 
     List<Product> searchProductByName(String name);
     Page<Product> findAll(Pageable pageable);
-
+List<ProductDto> getAllProductDto();
     void delete(Product product);
+
 }
