@@ -10,14 +10,15 @@ import com.app.payload.response.ResponseAPIGlobal;
 import com.app.payload.response.ResponseAPIPagination;
 import com.app.service.ProductCategoryService;
 import com.app.service.ProductService;
+import com.app.utils.SaveFileUntil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.Path;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class ProductApi {
 
     private final ProductService productService;
     private final ProductCategoryService productCategoryService;
-
+    // safe
     @PutMapping("/update/{productId}")
     public ResponseEntity<ProductDto> update(@RequestBody ProductDto param,@PathVariable("productId") Integer productId)
     {
@@ -84,5 +85,25 @@ public class ProductApi {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
+    @PostMapping("/uploadFiles")
+    public  ResponseEntity<ResponseAPIGlobal> uploadFile(@RequestParam MultipartFile file)
+    {
+        ResponseAPIGlobal response = new ResponseAPIGlobal();
+        try{
+            Path pathUpload = Path.of("src/uploads");
+            if(!file.isEmpty()){
+                SaveFileUntil.save(file,pathUpload);
+                response.setData(file.getOriginalFilename());
+                response.setMessage("up file success ");
+                response.setStatus(HttpStatus.OK.value());
+                response.setError("");
+            }
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }catch (Exception e){
+            response.setError(e.getMessage());
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
