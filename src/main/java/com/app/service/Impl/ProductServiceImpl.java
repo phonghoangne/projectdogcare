@@ -1,6 +1,7 @@
 package com.app.service.Impl;
 
 import com.app.DTO.ProductDto;
+import com.app.Exception.ObjectNotFoundException;
 import com.app.Mapper.ProductMapper;
 import com.app.model.Invoice;
 import com.app.model.Product;
@@ -55,8 +56,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findById(Integer integer) {
-        return productRepository.findById(integer);
+    public Product findById(Integer integer) {
+        return productRepository.findById(integer).orElseThrow(() -> new ObjectNotFoundException("Khong the tim thay produtc :" + integer));
     }
 
 

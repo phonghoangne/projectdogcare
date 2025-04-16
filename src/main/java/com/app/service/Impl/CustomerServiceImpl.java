@@ -13,6 +13,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
+    @Override
+    public Customer findById(Integer integer) {
+        return null;
+    }
+
     private final CustomerRepository customerRepository;
     @Override
     public List<Customer> findAll() {
@@ -34,11 +39,6 @@ public class CustomerServiceImpl implements CustomerService {
 Customer customer = customerRepository.findById(integer).orElseThrow(()-> new RuntimeException("Customer is not  found"));
             customerRepository.delete(customer);
 
-    }
-
-    @Override
-    public Optional<Customer> findById(Integer integer) {
-        return Optional.empty();
     }
 
 

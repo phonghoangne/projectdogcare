@@ -50,9 +50,9 @@ public class AdminController {
     public String getAdminEditAccount(Model model, @RequestParam(defaultValue = "0", value = "page", required = false) int page,
                                       @RequestParam("id") Integer integer) {
         List<User> users = userService.findAll();
-        Optional<User> editUser = userService.findById(integer);
+        User editUser = userService.findById(integer);
         model.addAttribute("userList", users);
-        model.addAttribute("editUser", editUser.get());
+        model.addAttribute("editUser", editUser);
         return "crudAccount";
     }
 
@@ -69,7 +69,7 @@ public class AdminController {
 
     @GetMapping("/account/remove")
     public String removeAdminAccount(Model model, @RequestParam("userId") Integer Id, @RequestParam(defaultValue = "0", value = "page", required = false) int page) {
-        User user = userService.findById(Id).get();
+        User user = userService.findById(Id);
         userService.delete(Id);
         model.addAttribute("success", "xoa thanh cong");
         List<User> userList = userRepository.findAll();
@@ -81,9 +81,9 @@ public class AdminController {
     //book
     @GetMapping("/product/edit")
     public String editAdminProduct(Model model, @RequestParam(defaultValue = "0", value = "page", required = false) int page, @RequestParam("id") Integer id, MultipartFile file) {
-        Optional<Product> editProduct = productService.findById(id);
+        Product editProduct = productService.findById(id);
         model.addAttribute("productList", productService.findAll());
-        model.addAttribute("editProduct", editProduct.get());
+        model.addAttribute("editProduct", editProduct);
         model.addAttribute("category", productCategoryService.findAll());
         return "curdProduct";
     }
@@ -108,7 +108,7 @@ public class AdminController {
 
     @GetMapping("/product/delete")
     public String deleteAdminProduct(Model model, @RequestParam(defaultValue = "0", value = "page", required = false) int page, @RequestParam("id") Integer id) {
-        Product productDelete = productService.findById(id).get();
+        Product productDelete = productService.findById(id);
         productService.delete(productDelete);
         model.addAttribute("success", "xoa thanh cong");
         model.addAttribute("productList", productService.findAll());
@@ -130,9 +130,9 @@ public class AdminController {
     @GetMapping("/category/edit")
     public String getAdminCategoryEdit(Model model, @RequestParam("id") Integer id) {
         List<ProductCategory> categoryList = productCategoryService.findAll();
-        Optional<ProductCategory> editProductCategory = productCategoryService.findById(id);
+        ProductCategory editProductCategory = productCategoryService.findById(id);
         model.addAttribute("categoryList", categoryList);
-        model.addAttribute("editProductCategory", editProductCategory.get());
+        model.addAttribute("editProductCategory", editProductCategory);
         List<ProductCategory> navCategory = productCategoryService.findAll();
         model.addAttribute("navCategory", navCategory);
         return "crudCategory";

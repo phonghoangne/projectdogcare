@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface ProductCategoryService extends BaseModel<ProductCategory, Integer> {
 
-    Optional<ProductCategory> findById(Integer id);
+    ProductCategory findById(Integer id);
 }

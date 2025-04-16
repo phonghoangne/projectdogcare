@@ -39,8 +39,8 @@ public class PaymentLineServiceImpl implements PaymentLineService {
     }
 
     @Override
-    public Optional<PaymentLine> findById(Integer integer) {
-        return Optional.empty();
+    public PaymentLine findById(Integer integer) {
+        return paymentLineRepository.findById(integer).orElse(null);
     }
 
 

@@ -2,16 +2,15 @@ package com.app.controller.Admin;
 
 import com.app.DTO.ProductDto;
 import com.app.model.Product;
+import com.app.payload.request.ProductRequest;
+import com.app.payload.response.GlobalResponsePagination;
 import com.app.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,4 +41,18 @@ public class RestApi {
         mapRespone.put("error","");
         return ResponseEntity.ok(mapRespone);
     }
+    @GetMapping("/getPaginationProduct")
+    public ResponseEntity<?> getPagationProduct(@ModelAttribute ProductRequest productRequest){
+        GlobalResponsePagination listData = productService.getAll(productRequest);
+        Map<String,Object> mapRespone = new HashMap<>();
+        mapRespone.put("statusCode",HttpStatus.OK.value());
+        mapRespone.put("data",listData);
+        mapRespone.put("totalItem",listData.getTotalItem());
+        mapRespone.put("totalPage",listData.getTotalPage());
+        mapRespone.put("currentPage",listData.getCurrentPage());
+        mapRespone.put("message","Call Api success");
+        mapRespone.put("error","");
+        return ResponseEntity.ok(mapRespone);
+     }
+
 }

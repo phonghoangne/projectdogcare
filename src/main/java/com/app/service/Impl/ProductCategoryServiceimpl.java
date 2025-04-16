@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.Exception.ObjectNotFoundException;
 import com.app.model.Invoice;
 import com.app.model.ProductCategory;
 import com.app.repository.ProductCategoryRepository;
@@ -38,7 +39,9 @@ productCategoryRepository.delete(productCategory);
 
 
     @Override
-    public Optional<ProductCategory> findById(Integer id) {
-        return Optional.empty();
+    public ProductCategory findById(Integer id) {
+
+        return productCategoryRepository.findById(id).orElseThrow(()  -> new ObjectNotFoundException("khong the tim thay category cua product :" +id));
+
     }
 }

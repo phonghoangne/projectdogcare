@@ -14,6 +14,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class InvoiceLineServiceImpl implements InvoiceLineService{
+    @Override
+    public InvoiceLine findById(Integer integer) {
+        return null;
+    }
+
     private final InvoiceLineRepository invoiceLineRepository;
     @Override
     public List<InvoiceLine> findAll() {
@@ -38,10 +43,6 @@ public class InvoiceLineServiceImpl implements InvoiceLineService{
 
     }
 
-    @Override
-    public Optional<InvoiceLine> findById(Integer integer) {
-        return Optional.empty();
-    }
 
 
     @Override

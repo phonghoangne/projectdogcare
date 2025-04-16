@@ -49,9 +49,11 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public Optional<CartItem> findById(Integer integer) {
-        return cartItemRepository.findById(integer);
+    public CartItem findById(Integer integer) {
+        return cartItemRepository.findById(integer).orElseThrow(() -> new ObjectNotFoundException("Khong the tim thay cartitem"+ integer));
     }
+
+
     @Override
     public CartItem addProductToCart(Integer productId, Integer customerId, Integer quantity ,Locale locale) {
         Optional<Product> product = productRepository.findById(productId);
@@ -84,8 +86,8 @@ public class CartItemServiceImpl implements CartItemService {
             dto.setCreateDate(itemCart.getCreatedDate());
             dto.setTotalPrice(itemCart.getTotalPrice());
             dto.setQuantity(itemCart.getQuantity());
-            Optional<Product> product = productService.findById(itemCart.getProductId());
-            dto.setProductName(product.get().getProductName());
+            Product product = productService.findById(itemCart.getProductId());
+            dto.setProductName(product.getProductName());
             cartItemDtos.add(dto);
         }
         return cartItemDtos;

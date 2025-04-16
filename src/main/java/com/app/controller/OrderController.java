@@ -56,7 +56,7 @@ public class OrderController {
             total = total.add(cartItem.getPrice().multiply(new BigDecimal(cartItem.getQuantity())));
 
             // cap nhat trang thai cua cart item
-            CartItem cartItem1 =cartItemService.findById(cartItem.getId()).get();
+            CartItem cartItem1 =cartItemService.findById(cartItem.getId());
             cartItem1.setStatus("COM");
             cartItemService.save(cartItem1);
         }

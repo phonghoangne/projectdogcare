@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.Exception.ObjectNotFoundException;
 import com.app.model.Invoice;
 import com.app.model.Payment;
 import com.app.repository.PaymentRepository;
@@ -37,8 +38,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Optional<Payment> findById(Integer integer) {
-        return Optional.empty();
+    public Payment findById(Integer integer) {
+        return paymentRepository.findById(integer).orElseThrow(() -> new ObjectNotFoundException("Khong the tim thay Payment :"+integer));
     }
 
 

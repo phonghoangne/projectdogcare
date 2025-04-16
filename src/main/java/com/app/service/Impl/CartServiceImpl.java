@@ -1,5 +1,6 @@
 package com.app.service.Impl;
 
+import com.app.Exception.ObjectNotFoundException;
 import com.app.model.Cart;
 import com.app.model.Invoice;
 import com.app.model.Product;
@@ -15,6 +16,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
+    @Override
+    public Cart findById(Integer integer) {
+        return cartRepository.findById(integer).orElseThrow(() -> new ObjectNotFoundException("khong the tim thay gio hang "+ integer));
+    }
+
     private final CartRepository cartRepository;
     @Override
     public List<Cart> findAll() {
@@ -38,10 +44,7 @@ public class CartServiceImpl implements CartService {
         cartRepository.delete(cart);
     }
 
-    @Override
-    public Optional<Cart> findById(Integer integer) {
-        return Optional.empty();
-    }
+
 
 
     @Override

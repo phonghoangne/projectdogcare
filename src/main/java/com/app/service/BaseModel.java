@@ -10,6 +10,6 @@ public interface BaseModel <T,ID>{
     T save(T id);
     T update(T id);
     void delete(ID id);
-    Optional<T> findById(ID id);
+     T findById(ID id);
 
 }

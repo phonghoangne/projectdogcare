@@ -14,6 +14,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService {
+    @Override
+    public Invoice findById(Integer integer) {
+        return null;
+    }
+
     private final InvoiceRepository invoiceRepository;
 
 
@@ -47,9 +52,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     }
 
-    @Override
-    public Optional<Invoice> findById(Integer integer) {
-        return Optional.empty();
-    }
+
 
 }

@@ -50,9 +50,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(Integer Id) {
-        return userRepository.findById(Id);
+    public User findById(Integer id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Khong the tim thay user: " + id));
     }
+
 
 
     @Override
